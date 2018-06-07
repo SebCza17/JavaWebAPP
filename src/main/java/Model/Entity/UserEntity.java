@@ -1,14 +1,14 @@
-package Model;
+package Model.Entity;
 
-public class User {
+public class UserEntity {
     private int id;
     private String email;
     private String password;
 
-    public User() {
+    public UserEntity() {
     }
 
-    public User(int id, String email, String password) {
+    public UserEntity(int id, String email, String password) {
         this.id = id;
         this.email = email;
         this.password = password;
