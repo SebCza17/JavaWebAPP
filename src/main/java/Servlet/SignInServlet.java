@@ -1,3 +1,5 @@
+package Servlet;
+
 import Model.DAO.UserDAO;
 
 import javax.naming.InitialContext;
@@ -14,12 +16,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-@WebServlet(name = "SignInServlet", urlPatterns = "/SignInServlet")
+@WebServlet(name = "Servlet.SignInServlet", urlPatterns = "/SignInServlet")
 public class SignInServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         UserDAO userDAO = new UserDAO();
-        boolean test = false;
 
         String getEmail = request.getParameter("email");
         String getPassword = request.getParameter("password");
@@ -27,8 +28,11 @@ public class SignInServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
 
-        if(userDAO.isUser(getEmail, getPassword)) printWriter.println("Pomyslnie");
-        else printWriter.println("BLAD");
+        if(!userDAO.isUser(getEmail, getPassword)) {
+            request.setAttribute("error", "Incorrect Email or Password");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        }
+        else printWriter.println("Success Sign In");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

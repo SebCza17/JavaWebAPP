@@ -1,41 +1,68 @@
 package Model.DAO;
 
-import Model.Entity.UserEntity;
-
-import javax.naming.InitialContext;
-import javax.naming.NamingException;
-import javax.sql.DataSource;
-import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserDAO {
 
-    public boolean isUser(String getEmail, String getPassword){
+    private Boolean check(String query){
         ResultSet resultSet = null;
         boolean test = false;
         try {
-            InitialContext initialContext = new InitialContext();
+            CoreDAO coreDAO = new CoreDAO();
 
-            DataSource dataSource = (DataSource) initialContext.lookup("jdbc/RoomBook2");
-
-            Connection connection = dataSource.getConnection();
-            Statement statement = connection.createStatement();
-
-            resultSet = statement.executeQuery("select email from users where email = '" + getEmail + "' and password = '" + getPassword + "'");
+            resultSet = coreDAO.getStatement().executeQuery(query);
 
             if(resultSet.next()) test = true;
 
-            statement.close();
-            connection.close();
+            coreDAO.close();
 
 
         }catch (Exception e){
             System.out.println(e);
         }
 
-
         return test;
     }
+
+    public boolean isUser(String getEmail, String getPassword){
+
+        return check("select email from users where email = '" + getEmail + "' and password = '" + getPassword + "'");
+    }
+
+    public Boolean isUsername(String getUsername) {
+
+        return check("select username from users where username = '" + getUsername + "'");
+    }
+
+    public Boolean isEmail(String getEmail){
+
+        return check("select email from users where email = '" + getEmail + "'");
+    }
+
+    public Boolean addUser(String getUsername, String getEmail, String getPassword) {
+        try {
+
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO users(email, password, username) values (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setString(1, getEmail);
+            preparedStatement.setString(2, getPassword);
+            preparedStatement.setString(3, getUsername);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+            return true;
+
+        } catch (Exception e) {
+            System.out.println(e);
+            return false;
+        }
+    }
+
+
 }

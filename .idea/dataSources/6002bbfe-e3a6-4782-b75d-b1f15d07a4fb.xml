@@ -73,8 +73,8 @@
     <schema id="16" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-06-07.19:31:49.355</IntrospectionTimestamp>
-      <IntrospectionStateNumber>7078</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-06-08.22:48:09.993</IntrospectionTimestamp>
+      <IntrospectionStateNumber>7085</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -127,38 +127,57 @@
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <table id="24" parent="16" name="users">
-      <ObjectId>23499</ObjectId>
-      <StateNumber>7078</StateNumber>
+    <sequence id="24" parent="16" name="users_id_seq">
+      <ObjectId>23518</ObjectId>
+      <StateNumber>7085</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <table id="25" parent="16" name="users">
+      <ObjectId>23520</ObjectId>
+      <StateNumber>7085</StateNumber>
     </table>
-    <column id="25" parent="24" name="id">
+    <column id="26" parent="25" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>7069</StateNumber>
+      <StateNumber>7085</StateNumber>
+      <DefaultExpression>nextval(&apos;users_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
+      <SequenceName>users_id_seq</SequenceName>
     </column>
-    <column id="26" parent="24" name="email">
+    <column id="27" parent="25" name="username">
       <Position>2</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>7069</StateNumber>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="27" parent="24" name="password">
+    <column id="28" parent="25" name="email">
       <Position>3</Position>
-      <DataType>varchar(255)|0s</DataType>
-      <StateNumber>7069</StateNumber>
+      <DataType>varchar(100)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="28" parent="24" name="userentity_pkey">
-      <ObjectId>23505</ObjectId>
+    <column id="29" parent="25" name="password">
+      <Position>4</Position>
+      <DataType>varchar(300)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7085</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="30" parent="25" name="users_pkey">
+      <ObjectId>23524</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="29" parent="24" name="userentity_pkey">
-      <ObjectId>23506</ObjectId>
+    <key id="31" parent="25" name="users_pkey">
+      <ObjectId>23525</ObjectId>
       <ColNames>id</ColNames>
-      <UnderlyingIndexName>userentity_pkey</UnderlyingIndexName>
+      <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
   </database-model>

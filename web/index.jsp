@@ -11,6 +11,7 @@
     <title>$Title$</title>
   </head>
   <body>
-<%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
+  <%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
+
   </body>
 </html>
