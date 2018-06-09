@@ -1,5 +1,7 @@
 package Model.DAO;
 
+import Model.Entity.UserEntity;
+import Model.Entity.UserGroupEntity;
 import Model.HashPass;
 
 import java.sql.PreparedStatement;
@@ -10,6 +12,31 @@ import java.util.logging.Logger;
 
 public class UserDAO {
 
+    public UserEntity getUser(String formEmail, String formPassword){
+
+        ResultSet resultSet = null;
+        UserEntity userEntity = new UserEntity();
+
+        CoreDAO coreDAO = new CoreDAO();
+
+        try {
+            resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM users where email = '" + formEmail + "' and password = '" + getPassword(formEmail) + "'" );
+            while(resultSet.next()) {
+                userEntity.setId(resultSet.getInt(1));
+                userEntity.setUsername(resultSet.getString(2));
+                userEntity.setEmail(resultSet.getString(3));
+                userEntity.setPassword(resultSet.getString(4));
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        coreDAO.close();
+
+        return userEntity;
+    }
+    
     private Boolean check(String query) {
         ResultSet resultSet = null;
         boolean test = false;
@@ -80,14 +107,24 @@ public class UserDAO {
 
             CoreDAO coreDAO = new CoreDAO();
             String hashPassword = HashPass.hash(formPassword);
+            UserEntity userEntity = null;
 
-            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO users(email, password, username) values (?, ?, ?)");
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO users(email, password, username) values (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, formEmail);
             preparedStatement.setString(2, hashPassword);
             preparedStatement.setString(3, formUsername);
 
-            preparedStatement.executeUpdate();
+            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+                if (generatedKeys.next()) {
+                    userEntity.setId(generatedKeys.getInt(1));
+                }
+                else {
+                    throw new SQLException("Creating user failed, no ID obtained.");
+                }
+            }
+
+            UserGroupDAO.addUserGroup(userEntity);
 
             coreDAO.close();
 

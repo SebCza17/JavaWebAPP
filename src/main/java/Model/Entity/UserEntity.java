@@ -2,11 +2,12 @@ package Model.Entity;
 
 public class UserEntity {
     private int id;
+    private String username;
     private String email;
     private String password;
-    private String username;
+    private UserGroupEntity userGroupEntity;
 
-    public UserEntity() {
+    public UserEntity(Object user) {
     }
 
     public UserEntity(int id, String email, String password, String username) {
@@ -14,6 +15,9 @@ public class UserEntity {
         this.email = email;
         this.password = password;
         this.username = username;
+    }
+
+    public UserEntity() {
     }
 
     public int getId() {
@@ -46,5 +50,13 @@ public class UserEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public UserGroupEntity getUserGroupEntity() {
+        return userGroupEntity;
+    }
+
+    public void setUserGroupEntity(UserGroupEntity userGroupEntity) {
+        this.userGroupEntity = userGroupEntity;
     }
 }

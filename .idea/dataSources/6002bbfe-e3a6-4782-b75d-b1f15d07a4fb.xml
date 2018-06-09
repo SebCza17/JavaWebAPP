@@ -73,8 +73,8 @@
     <schema id="16" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-06-08.22:48:09.993</IntrospectionTimestamp>
-      <IntrospectionStateNumber>7085</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-06-09.17:32:42.640</IntrospectionTimestamp>
+      <IntrospectionStateNumber>7096</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -127,7 +127,15 @@
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <sequence id="24" parent="16" name="users_id_seq">
+    <sequence id="24" parent="16" name="usersGroup_id_seq">
+      <ObjectId>23526</ObjectId>
+      <StateNumber>7091</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <BelongsToColumn>1</BelongsToColumn>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="25" parent="16" name="users_id_seq">
       <ObjectId>23518</ObjectId>
       <StateNumber>7085</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -135,11 +143,15 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="25" parent="16" name="users">
+    <table id="26" parent="16" name="users">
       <ObjectId>23520</ObjectId>
-      <StateNumber>7085</StateNumber>
+      <StateNumber>7096</StateNumber>
     </table>
-    <column id="26" parent="25" name="id">
+    <table id="27" parent="16" name="users_group">
+      <ObjectId>23528</ObjectId>
+      <StateNumber>7096</StateNumber>
+    </table>
+    <column id="28" parent="26" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -148,37 +160,80 @@
       <TypeId>23</TypeId>
       <SequenceName>users_id_seq</SequenceName>
     </column>
-    <column id="27" parent="25" name="username">
+    <column id="29" parent="26" name="username">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="28" parent="25" name="email">
+    <column id="30" parent="26" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="29" parent="25" name="password">
+    <column id="31" parent="26" name="password">
       <Position>4</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="30" parent="25" name="users_pkey">
+    <index id="32" parent="26" name="users_pkey">
       <ObjectId>23524</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="25" name="users_pkey">
+    <key id="33" parent="26" name="users_pkey">
       <ObjectId>23525</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
+    <column id="34" parent="27" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7091</StateNumber>
+      <DefaultExpression>nextval(&apos;&quot;usersGroup_id_seq&quot;&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+      <SequenceName>usersGroup_id_seq</SequenceName>
+    </column>
+    <column id="35" parent="27" name="idUser">
+      <Position>2</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7091</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="36" parent="27" name="group">
+      <Position>3</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>7091</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="37" parent="27" name="usersGroup_pkey">
+      <ObjectId>23532</ObjectId>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <key id="38" parent="27" name="usersGroup_pkey">
+      <ObjectId>23533</ObjectId>
+      <ColNames>id</ColNames>
+      <UnderlyingIndexName>usersGroup_pkey</UnderlyingIndexName>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="39" parent="27" name="users_group_users_id_fk">
+      <ObjectId>23534</ObjectId>
+      <ColNames>idUser</ColNames>
+      <RefTableId>23520</RefTableId>
+      <RefColPositions>1</RefColPositions>
+      <RefTableName>users</RefTableName>
+      <RefKeyName>users_pkey</RefKeyName>
+      <RefColNames>id</RefColNames>
+    </foreign-key>
   </database-model>
 </dataSource>

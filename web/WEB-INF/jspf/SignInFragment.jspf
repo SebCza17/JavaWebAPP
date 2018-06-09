@@ -5,7 +5,7 @@
 <link href="Resources/CSS/LogRegStyle.css" rel="stylesheet" type="text/css"/>
 <script src="Resources/JS/LogRegJS.js"></script>
 <div class="container">
-    <div class="row">
+    <div  style="margin-top: 30vh">
         <div class="col-md-6 col-md-offset-3">
             <div class="panel panel-login">
                 <div class="panel-heading">

@@ -1,0 +1,47 @@
+header {
+    height:100vh;
+    background-image:url('https://img1.picload.org/image/ddolpcwa/woman-2486528_1920.jpg');
+    background-size:cover;
+    background-position:center center;
+    background-repeat:no-repeat;
+}
+
+@media (max-width:767px) {
+    header {
+        height:100%;
+    }
+}
+
+.navbar.navbar-default.navbar-fixed-top {
+    background:transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color:#fff;
+    text-transform:uppercase;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+    color:#fff;
+}
+
+.navbar-brand.navbar-link {
+    color:#fff;
+}
+
+
+
+header h1 {
+    text-align:center;
+    color:#fff;
+    font-family:'Bangers';
+    font-size:81px;
+    text-shadow:1px 1px 1px #000;
+}
+
+header p {
+    text-align:center;
+    color:#fff;
+    font-size:32px;
+    text-shadow:1px 1px 1px #000;
+}

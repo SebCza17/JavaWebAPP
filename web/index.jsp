@@ -1,17 +1,50 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Sebastian
-  Date: 07.06.2018
-  Time: 17:48
-  To change this template use File | Settings | File Templates.
---%>
+<%@ page import="Model.Entity.UserEntity" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<link href="Resources/CSS/MenuStyle.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="Resources/JS/SignInJS.js"></script>
+
+<%
+
+  if(session.getAttribute("user") != null) {
+    response.sendRedirect("main.jsp");
+  }
+
+%>
 <html>
   <head>
-    <title>$Title$</title>
+    <title>RoomBook</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
   </head>
   <body>
-  <%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header"><a class="navbar-brand navbar-link" href="https://www.instagram.com/dize_designer/" target="blank"><i class="material-icons">cast</i></a>
+          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        </div>
+        <div class="collapse navbar-collapse" id="navcol-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li role="presentation"><a href="#">start now</a></li>
+            <li role="presentation"><a href="#">how to use</a></li>
+            <li role="presentation"><a href="#">online streamers</a></li>
+            <li role="presentation"><a href="#">sign in</a></li>
+            <li role="presentation"><a href="#">contact </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
+      <%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
+    </div>
+  </header>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
   <a href="DebugServlet" class="active">Login</a>
   </body>
 </html>

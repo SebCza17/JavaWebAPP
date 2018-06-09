@@ -1,6 +1,7 @@
 package Servlet;
 
 import Model.DAO.UserDAO;
+import Model.Entity.UserEntity;
 
 import javax.naming.InitialContext;
 import javax.servlet.ServletException;
@@ -8,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,18 +24,25 @@ public class SignInServlet extends HttpServlet {
 
         UserDAO userDAO = new UserDAO();
 
-        String getEmail = request.getParameter("email");
-        String getPassword = request.getParameter("password");
+        String formEmail = request.getParameter("email");
+        String formPassword = request.getParameter("password");
 
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
 
 
-        if(!userDAO.isUser(getEmail, getPassword)) {
+        if(!userDAO.isUser(formEmail, formPassword)) {
             request.setAttribute("error", "Incorrect Email or Password");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
-        else printWriter.println("Success Sign In");
+        else {
+            UserEntity userEntity = userDAO.getUser(formEmail, formPassword);
+
+            HttpSession httpSession = request.getSession();
+            httpSession.setAttribute("user", userEntity);
+            httpSession.setMaxInactiveInterval(30*60);
+            request.getRequestDispatcher("main.jsp").forward(request, response);
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
