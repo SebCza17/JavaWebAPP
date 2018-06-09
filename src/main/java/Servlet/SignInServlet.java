@@ -28,6 +28,7 @@ public class SignInServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter printWriter = response.getWriter();
 
+
         if(!userDAO.isUser(getEmail, getPassword)) {
             request.setAttribute("error", "Incorrect Email or Password");
             request.getRequestDispatcher("index.jsp").forward(request, response);

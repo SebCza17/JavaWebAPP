@@ -12,6 +12,6 @@
   </head>
   <body>
   <%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
-
+  <a href="DebugServlet" class="active">Login</a>
   </body>
 </html>
