@@ -19,6 +19,7 @@
 %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>RoomBook</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Anton">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers">
@@ -44,8 +45,11 @@
         </div>
     </nav>
             <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
-                <%@include file="Resources/jspf/BodyFragment.jspf"%>
-            </div>
+
+               <%if(request.getParameter("faculty") == null){ %>   <%@include file="Resources/jspf/BodyFragment.jspf"%> <%}
+               else if(request.getParameter("faculty") != null){ %> <%@include file="Resources/jspf/ClassessFragment.jspf"%> <%}%>
+
+    </div>
 </header>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
 

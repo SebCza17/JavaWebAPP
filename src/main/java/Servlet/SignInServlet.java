@@ -1,5 +1,6 @@
 package Servlet;
 
+import Model.DAO.FacultiDAO;
 import Model.DAO.UserDAO;
 import Model.Entity.UserEntity;
 

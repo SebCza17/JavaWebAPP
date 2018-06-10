@@ -23,7 +23,7 @@
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <%FacultiDAO faculties = new FacultiDAO(); int i = 0;%>
+            <%FacultiDAO faculties = new FacultiDAO(); int i = 3;%>
             <%
                 for (FacultyEntity faculty: faculties.getFaculties()) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=faculty.getId()%>">
@@ -34,7 +34,7 @@
                 <td class="col-xs-2"><%=faculty.getAddress()%></td>
                 <td class="col-xs-1">1</td>
             </tr>
-               <% }%>
+            <% }%>
 
 
             </tbody>
@@ -46,6 +46,6 @@
     $(".points_table").on('click','tr',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
-        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty=' + id;
+        document.location.href = '${pageContext.request.contextPath}/?faculty=' + id;
     });
 </script>

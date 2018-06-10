@@ -16,6 +16,16 @@
     width: 100%;
 }
 
+.points_table tbody > tr:hover{
+    background: greenyellow;
+    cursor: pointer;
+}
+
+.points_table tbody > tr:active{
+    background: #4b7e22;
+    cursor: pointer;
+}
+
 .points_table thead, .points_table tbody, .points_table tr, .points_table td, .points_table th{
     display: inline-block;
 }
@@ -24,6 +34,7 @@
     background: #ff3100;
     color: #fff;
 }
+
 
 .points_table tbody td, .points_table thead > tr> th{
     float: left;
