@@ -23,7 +23,7 @@
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <%FacultiDAO faculties = new FacultiDAO(); int i = 0;%>
+            <%FacultiDAO faculties = new FacultiDAO(); int i = 1;%>
             <%
                 for (FacultyEntity faculty: faculties.getFaculties()) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=faculty.getId()%>">

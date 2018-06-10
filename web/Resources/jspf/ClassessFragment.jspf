@@ -1,6 +1,5 @@
-<%@ page import="Model.Entity.FacultyEntity" %>
-<%@ page import="java.util.List" %>
-<%@ page import="Model.DAO.FacultiDAO" %>
+<%@ page import="Model.DAO.ClassesDAO" %>
+<%@ page import="Model.Entity.ClassesEntity" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,25 +13,25 @@
             <thead>
             <tr>
                 <th class="col-xs-1">#</th>
-                <th class="col-xs-6">Faculty</th>
-                <th class="col-xs-1">Short</th>
-                <th class="col-xs-1">W</th>
-                <th class="col-xs-2">Address</th>
-                <th class="col-xs-1">n Classes</th>
+                <th class="col-xs-6">Name</th>
+                <th class="col-xs-1">Floor</th>
+                <th class="col-xs-2">Type</th>
+                <th class="col-xs-1">Capacity</th>
+                <th class="col-xs-1">Available</th>
             </tr>
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <%FacultiDAO faculties = new FacultiDAO(); int i = 3;%>
+            <%ClassesDAO classesDAO = new ClassesDAO(); int i = 1;%>
             <%
-                for (FacultyEntity faculty: faculties.getFaculties()) { %>
-            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=faculty.getId()%>">
+                for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(request.getParameter("faculty")))) { %>
+            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=classesEntity.getId()%>">
                 <td class="col-xs-1"><%=i++%></td>
-                <td class="col-xs-6"><%=faculty.getName()%></td>
-                <td class="col-xs-1"><%=faculty.getShortname()%></td>
-                <td class="col-xs-1"><%=faculty.getWn()%></td>
-                <td class="col-xs-2"><%=faculty.getAddress()%></td>
-                <td class="col-xs-1">1</td>
+                <td class="col-xs-6"><%=classesEntity.getName()%></td>
+                <td class="col-xs-1"><%=classesEntity.getFloor()%></td>
+                <td class="col-xs-2"><%=classesEntity.getIdType()%></td>
+                <td class="col-xs-1"><%=classesEntity.getCapacity()%></td>
+                <td class="col-xs-1"><%=classesEntity.getAvailable()%></td>
             </tr>
             <% }%>
 
@@ -46,6 +45,6 @@
     $(".points_table").on('click','tr',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
-        document.location.href = '${pageContext.request.contextPath}/?faculty=' + id;
+        document.location.href = '${pageContext.request.contextPath}/?classes=' + id;
     });
 </script>
