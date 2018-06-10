@@ -32,7 +32,11 @@ public class SignUpServlet extends HttpServlet {
         } else if(!userDAO.addUser(getUsername, getEmail, getPassword)) {
             request.setAttribute("error", "Something go wrong!");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else printWriter.println("Registered!");
+        } else {
+            request.setAttribute("error", "Registered ; )");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+
+        }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

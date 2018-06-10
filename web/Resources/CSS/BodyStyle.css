@@ -21,7 +21,7 @@
 }
 
 .points_table thead{
-    background: #d91f2d;
+    background: #ff3100;
     color: #fff;
 }
 
@@ -66,6 +66,6 @@
 
 .points_table_scrollbar::-webkit-scrollbar-thumb{
     border-radius: 10px;
-    background-color: #D62929;
+    background-color: #ff3100;
     background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }

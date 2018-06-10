@@ -73,8 +73,8 @@
     <schema id="16" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-06-09.17:32:42.640</IntrospectionTimestamp>
-      <IntrospectionStateNumber>7096</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-06-10.12:14:07.710</IntrospectionTimestamp>
+      <IntrospectionStateNumber>7111</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -145,11 +145,11 @@
     </sequence>
     <table id="26" parent="16" name="users">
       <ObjectId>23520</ObjectId>
-      <StateNumber>7096</StateNumber>
+      <StateNumber>7111</StateNumber>
     </table>
     <table id="27" parent="16" name="users_group">
       <ObjectId>23528</ObjectId>
-      <StateNumber>7096</StateNumber>
+      <StateNumber>7111</StateNumber>
     </table>
     <column id="28" parent="26" name="id">
       <Position>1</Position>
@@ -201,18 +201,18 @@
       <TypeId>23</TypeId>
       <SequenceName>usersGroup_id_seq</SequenceName>
     </column>
-    <column id="35" parent="27" name="idUser">
+    <column id="35" parent="27" name="idusers">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>7091</StateNumber>
+      <StateNumber>7106</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="36" parent="27" name="group">
+    <column id="36" parent="27" name="grouptext">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>7091</StateNumber>
+      <StateNumber>7099</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <index id="37" parent="27" name="usersGroup_pkey">
@@ -227,13 +227,15 @@
       <Primary>1</Primary>
     </key>
     <foreign-key id="39" parent="27" name="users_group_users_id_fk">
-      <ObjectId>23534</ObjectId>
-      <ColNames>idUser</ColNames>
+      <ObjectId>23539</ObjectId>
+      <ColNames>idusers</ColNames>
       <RefTableId>23520</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>users</RefTableName>
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
+      <OnUpdate>cascade</OnUpdate>
     </foreign-key>
   </database-model>
 </dataSource>

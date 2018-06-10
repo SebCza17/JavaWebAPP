@@ -1,9 +1,7 @@
 header {
     height:100vh;
-    background-image:url('https://img1.picload.org/image/ddolpcwa/woman-2486528_1920.jpg');
     background-size:cover;
-    background-position:center center;
-    background-repeat:no-repeat;
+    background: url('https://orig00.deviantart.net/6d1f/f/2014/029/7/3/tree_in_broken_glass_sphere_by_atakirus-d749sew.jpg') no-repeat center center;
 }
 
 @media (max-width:767px) {
@@ -12,22 +10,6 @@ header {
     }
 }
 
-.navbar.navbar-default.navbar-fixed-top {
-    background:transparent;
-}
-
-.navbar-default .navbar-nav > li > a {
-    color:#fff;
-    text-transform:uppercase;
-}
-
-.navbar-default .navbar-nav > li > a:hover {
-    color:#fff;
-}
-
-.navbar-brand.navbar-link {
-    color:#fff;
-}
 
 
 

@@ -35,16 +35,38 @@
             <li role="presentation"><a href="#">how to use</a></li>
             <li role="presentation"><a href="#">online streamers</a></li>
             <li role="presentation"><a href="#">sign in</a></li>
-            <li role="presentation"><a href="#">contact </a></li>
+            <li role="presentation"><a href="">Sign In </a></li>
           </ul>
         </div>
       </div>
     </nav>
     <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
-      <%@include file="WEB-INF/jspf/SignInFragment.jspf"%>
+      <%@include file="Resources/jspf/SignInFragment.jspf"%>
     </div>
   </header>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>
-  <a href="DebugServlet" class="active">Login</a>
+
   </body>
 </html>
+
+<style>
+
+
+  .navbar.navbar-default.navbar-fixed-top {
+    background:transparent;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    color: #d6d0d2;
+    text-transform:uppercase;
+  }
+
+  .navbar-default .navbar-nav > li > a:hover {
+    color: #d5d626;
+  }
+
+  .navbar-brand.navbar-link {
+    color: #6f72ff;
+  }
+
+</style>
