@@ -13,25 +13,25 @@
             <thead>
             <tr>
                 <th class="col-xs-1">#</th>
-                <th class="col-xs-6">Name</th>
+                <th class="col-xs-5">Name</th>
                 <th class="col-xs-1">Floor</th>
                 <th class="col-xs-2">Type</th>
                 <th class="col-xs-1">Capacity</th>
-                <th class="col-xs-1">Available</th>
+                <th class="col-xs-2">Available</th>
             </tr>
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <%ClassesDAO classesDAO = new ClassesDAO(); int i = 1;%>
+            <%ClassesDAO classesDAO = new ClassesDAO(); int i = 1; String getFaculty = request.getParameter("faculty");%>
             <%
-                for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(request.getParameter("faculty")))) { %>
+                for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty))) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=classesEntity.getId()%>">
                 <td class="col-xs-1"><%=i++%></td>
-                <td class="col-xs-6"><%=classesEntity.getName()%></td>
+                <td class="col-xs-5"><%=classesEntity.getName()%></td>
                 <td class="col-xs-1"><%=classesEntity.getFloor()%></td>
                 <td class="col-xs-2"><%=classesEntity.getIdType()%></td>
                 <td class="col-xs-1"><%=classesEntity.getCapacity()%></td>
-                <td class="col-xs-1"><%=classesEntity.getAvailable()%></td>
+                <td class="col-xs-2"><%=classesEntity.getAvailable()%></td>
             </tr>
             <% }%>
 
@@ -40,11 +40,13 @@
         </table>
     </div>
 </div>
+<script src="Resources/JS/URLJS.js" type="text/javascript"></script>
 
 <script>
     $(".points_table").on('click','tr',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
-        document.location.href = '${pageContext.request.contextPath}/?classes=' + id;
+        var faculty = getUrlVariable('faculty');
+        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + id;
     });
 </script>
