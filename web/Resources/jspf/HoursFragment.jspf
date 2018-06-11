@@ -13,32 +13,40 @@
 <div class="container">
     <div style="margin-top: 30vh">
         <table class="points_table">
-            <%%>
-            <form action="${pageContext.request.contextPath}/BookRoomServlet" method="get">
+
+            <form action="${pageContext.request.contextPath}/BookRoomServlet" method="post">
+                <input type="hidden" name="classes" value="<%=request.getParameter("classes")%>"/>
+                <input type="hidden" name="faculty" value="<%=request.getParameter("faculty")%>"/>
             <thead>
             <tr>
                 <th class="col-xs-1">#</th>
                 <th class="col-xs-5">Hour</th>
-                <th class="col-xs-1">Floor</th>
-                <th class="col-xs-2">Type</th>
-                <th class="col-xs-1">Capacity</th>
+                <th class="col-xs-1">Day</th>
+                <th class="col-xs-2">Room</th>
+                <th class="col-xs-1">Faculty</th>
                 <th class="col-xs-2"><button type="submit" value="Submit">Book</button> </th>
             </tr>
             </thead>
             <tbody class="points_table_scrollbar">
             <%
-                Date data = new Date();  SimpleDateFormat dataMask = new SimpleDateFormat ("HH");
-                int nowHour = Integer.parseInt(dataMask.format(data)); int start = 7;
+                Date date = new Date();
+                SimpleDateFormat dateMaskHH = new SimpleDateFormat ("HH");
+                SimpleDateFormat dateMask = new SimpleDateFormat ("dd.MM.yyyy");
+                int nowHour = Integer.parseInt(dateMaskHH.format(date)); int start = 7; int i = 0;
+                Calendar calendar = Calendar.getInstance(); calendar.setTime(date); calendar.add(Calendar.DATE, Integer.parseInt(request.getParameter("day"))); date = calendar.getTime();
+                ClassesDAO classesDAO = new ClassesDAO();
+                FacultiDAO facultiDAO = new FacultiDAO();
             %>
+            <input type="hidden" name="day" value="<%=request.getParameter("day")%>"/>
             <%
                 if(request.getParameter("day").equals("0")) start = nowHour;
                 for (int x = start; x < 21; x++) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=x%>">
                 <td class="col-xs-1"><%=i++%></td>
                 <td class="col-xs-5"><%=x%></td>
-                <td class="col-xs-1"><%=1%></td>
-                <td class="col-xs-2"><%=1%></td>
-                <td class="col-xs-1"><%=1%></td>
+                <td class="col-xs-1"><%=dateMask.format(date)%></td>
+                <td class="col-xs-2"><%=classesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
+                <td class="col-xs-1"><%=facultiDAO.getName(Integer.parseInt(request.getParameter("faculty")))%></td>
                 <td class="col-xs-2"><input type="checkbox" name="hour" value="<%=x%>"/>  </td>
             </tr>
             <% }%>
@@ -50,3 +58,27 @@
     </div>
 </div>
 <script src="Resources/JS/URLJS.js" type="text/javascript"></script>
+
+<style>
+    button {
+        background-color: #ff3100;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #962800:
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+</style>

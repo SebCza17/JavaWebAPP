@@ -41,4 +41,9 @@ public class FacultiDAO {
 
         return facultyEntities;
     }
+
+    public String getName(int id){
+
+        return CoreDAO.getString("Select shortname From faculty where id = "+ id + "");
+    }
 }

@@ -36,53 +36,17 @@ public class UserDAO {
 
         return userEntity;
     }
-    
-    private Boolean check(String query) {
-        ResultSet resultSet = null;
-        boolean test = false;
 
-        CoreDAO coreDAO = new CoreDAO();
 
-        try {
-            resultSet = coreDAO.getStatement().executeQuery(query);
-            if (resultSet.next()) test = true;
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        coreDAO.close();
-
-        return test;
-    }
-
-    private static String getString(String query) {
-        String returnString = "";
-
-        CoreDAO coreDAO = new CoreDAO();
-
-        try {
-            ResultSet resultSet = coreDAO.getStatement().executeQuery(query);
-            while(resultSet.next())
-                returnString = resultSet.getString(1);
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
-        coreDAO.close();
-
-        return returnString;
-    }
 
     public String getPassword(String formEmail) {
 
-        return getString("select password from users where email = '" + formEmail + "'");
+        return CoreDAO.getString("select password from users where email = '" + formEmail + "'");
 
     }
 
     public static String getLastId(){
-        return getString("select max(id) from users");
+        return CoreDAO.getString("select max(id) from users");
     }
 
     public boolean isUser(String formEmail, String formPassword) {
@@ -96,12 +60,12 @@ public class UserDAO {
 
     public Boolean isUsername(String formUsername) {
 
-        return check("select username from users where username = '" + formUsername + "'");
+        return CoreDAO.check("select username from users where username = '" + formUsername + "'");
     }
 
     public Boolean isEmail(String formEmail) {
 
-        return check("select email from users where email = '" + formEmail + "'");
+        return CoreDAO.check("select email from users where email = '" + formEmail + "'");
     }
 
 
@@ -111,7 +75,6 @@ public class UserDAO {
 
             CoreDAO coreDAO = new CoreDAO();
             String hashPassword = HashPass.hash(formPassword);
-            UserEntity userEntity = null;
 
             PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO users(email, password, username) values (?, ?, ?)");
 

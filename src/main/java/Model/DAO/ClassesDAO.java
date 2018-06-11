@@ -2,8 +2,10 @@ package Model.DAO;
 
 import Model.Entity.ClassesEntity;
 import Model.Entity.FacultyEntity;
+import Model.Entity.UserEntity;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,4 +43,9 @@ public class ClassesDAO {
 
         return classesEntities;
     }
+
+   public String getName(int id){
+
+        return CoreDAO.getString("Select name From classes where id = "+ id + "");
+   }
 }

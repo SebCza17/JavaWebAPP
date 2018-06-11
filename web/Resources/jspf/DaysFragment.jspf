@@ -26,18 +26,19 @@
 
             <tbody class="points_table_scrollbar">
             <%
-                Date data = new Date();  SimpleDateFormat dayMask = new SimpleDateFormat ("dd");
+                Date date = new Date();  SimpleDateFormat dayMask = new SimpleDateFormat ("dd"); int i = 1;
                 SimpleDateFormat monthMask = new SimpleDateFormat ("MM");
                 SimpleDateFormat yearMask = new SimpleDateFormat ("yyyy");
-                Calendar calendar = Calendar.getInstance(); calendar.setTime(data); calendar.add(Calendar.DATE, -1);
+                SimpleDateFormat hourMask = new SimpleDateFormat ("HH");
+                Calendar calendar = Calendar.getInstance(); calendar.setTime(date);
             %>
-            <%
-                for (int x = 0; x < 14; x++) {  calendar.add(Calendar.DATE, 1); data = calendar.getTime();%>
+            <% if(Integer.parseInt(hourMask.format(date)) < 20) calendar.add(Calendar.DATE, -1);
+                for (int x = 0; x < 14; x++) {  calendar.add(Calendar.DATE, 1); date = calendar.getTime();%>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=i%>">
                 <td class="col-xs-1"><%=i++%></td>
-                <td class="col-xs-5"><%=dayMask.format(data)%></td>
-                <td class="col-xs-1"><%=monthMask.format(data)%></td>
-                <td class="col-xs-2"><%=yearMask.format(data)%></td>
+                <td class="col-xs-5"><%=dayMask.format(date)%></td>
+                <td class="col-xs-1"><%=monthMask.format(date)%></td>
+                <td class="col-xs-2"><%=yearMask.format(date)%></td>
                 <td class="col-xs-1"><%=1%></td>
                 <td class="col-xs-2"><%=1%></td>
             </tr>
