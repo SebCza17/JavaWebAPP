@@ -18,8 +18,8 @@
                 <th class="col-xs-1">#</th>
                 <th class="col-xs-5">Day</th>
                 <th class="col-xs-1">Month</th>
-                <th class="col-xs-2">Year</th>
-                <th class="col-xs-1">Booked</th>
+                <th class="col-xs-2">Room</th>
+                <th class="col-xs-1">Faculty</th>
                 <th class="col-xs-2">Available</th>
             </tr>
             </thead>
@@ -31,6 +31,8 @@
                 SimpleDateFormat yearMask = new SimpleDateFormat ("yyyy");
                 SimpleDateFormat hourMask = new SimpleDateFormat ("HH");
                 Calendar calendar = Calendar.getInstance(); calendar.setTime(date);
+                ClassesDAO classesDAO = new ClassesDAO();
+                FacultiDAO facultiDAO = new FacultiDAO();
             %>
             <% if(Integer.parseInt(hourMask.format(date)) < 20) calendar.add(Calendar.DATE, -1);
                 for (int x = 0; x < 14; x++) {  calendar.add(Calendar.DATE, 1); date = calendar.getTime();%>
@@ -38,9 +40,9 @@
                 <td class="col-xs-1"><%=i++%></td>
                 <td class="col-xs-5"><%=dayMask.format(date)%></td>
                 <td class="col-xs-1"><%=monthMask.format(date)%></td>
-                <td class="col-xs-2"><%=yearMask.format(date)%></td>
-                <td class="col-xs-1"><%=1%></td>
-                <td class="col-xs-2"><%=1%></td>
+                <td class="col-xs-2"><%=classesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
+                <td class="col-xs-1"><%=facultiDAO.getName(Integer.parseInt(request.getParameter("faculty")))%></td>
+                <td class="col-xs-2"><%=BookedDAO.countBookedHours(Integer.parseInt(request.getParameter("classes")), date)%></td>
             </tr>
             <% }%>
 

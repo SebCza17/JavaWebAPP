@@ -53,7 +53,7 @@
                 <td class="col-xs-1"><%=dateMask.format(date)%></td>
                 <td class="col-xs-2"><%=classesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
                 <td class="col-xs-1"><%=facultiDAO.getName(Integer.parseInt(request.getParameter("faculty")))%></td>
-                <td class="col-xs-2"><input type="checkbox" name="hour" value="<%=x%>"/>  </td>
+                <td class="col-xs-2"><%if(!bookedHours.contains(x)){ %><input type="checkbox" name="hour" value="<%=x%>"/> <%}%>  </td>
             </tr>
             <% }%>
             </form>

@@ -66,11 +66,22 @@ public class BookedDAO {
                 }
 
             }
+
+            coreDAO.close();
         }catch (Exception e){
             System.out.println(e);
+
         }
 
 
         return returnedIntTabs;
+    }
+
+    public static int countBookedHours(int formRoom, Date formDate){
+
+        List<Integer> bookedList =  getBookedHours(formRoom, formDate);
+
+
+        return bookedList.size();
     }
 }
