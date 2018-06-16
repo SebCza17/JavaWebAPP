@@ -3,6 +3,8 @@
 <%@ page import="java.util.Date" %>
 <%@ page import="java.text.SimpleDateFormat" %>
 <%@ page import="java.util.Calendar" %>
+<%@ page import="Model.DAO.BookedDAO" %>
+<%@ page import="java.util.ArrayList" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -36,12 +38,16 @@
                 Calendar calendar = Calendar.getInstance(); calendar.setTime(date); calendar.add(Calendar.DATE, Integer.parseInt(request.getParameter("day"))); date = calendar.getTime();
                 ClassesDAO classesDAO = new ClassesDAO();
                 FacultiDAO facultiDAO = new FacultiDAO();
+                List<Integer> bookedHours = BookedDAO.getBookedHours(Integer.parseInt(request.getParameter("classes")), date);
+
             %>
             <input type="hidden" name="day" value="<%=request.getParameter("day")%>"/>
+            <input type="hidden" name="idUsers" value="<%=((UserEntity)session.getAttribute("user")).getId()%>"/>
             <%
                 if(request.getParameter("day").equals("0")) start = nowHour;
                 for (int x = start; x < 21; x++) { %>
-            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=x%>">
+            <tr <%if (i%2==0 && !bookedHours.contains(x)){ %> class="odd" <%} else if(i%2!=0 && !bookedHours.contains(x)){%>class="even" <%}
+            else if(i%2==0 && bookedHours.contains(x)){%> class="bookedOdd" <%} else { %> class="bookedEven" <% } %> value="<%=x%>">
                 <td class="col-xs-1"><%=i++%></td>
                 <td class="col-xs-5"><%=x%></td>
                 <td class="col-xs-1"><%=dateMask.format(date)%></td>
@@ -72,7 +78,7 @@
     }
 
     button:hover {
-        background-color: #962800:
+        background-color: #962800;
         border: none;
         color: white;
         text-align: center;
@@ -80,5 +86,16 @@
         display: inline-block;
         font-size: 16px;
         cursor: pointer;
+    }
+
+
+    .bookedOdd {
+        background: #ff8f8c;
+        color: #000;
+    }
+
+    .bookedEven {
+        background: #ef8c89;
+        color: #000;
     }
 </style>

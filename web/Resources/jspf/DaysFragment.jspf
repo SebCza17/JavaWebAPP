@@ -57,6 +57,6 @@
         var id = $(this).attr('value');
         var faculty = getUrlVariable('faculty');
         var classes = getUrlVariable('classes');
-        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + classes + '&day=' + id;
+        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + classes + '&day=' + (id-1);
     });
 </script>

@@ -1,12 +1,14 @@
 package Servlet;
 
 import Model.DAO.BookedDAO;
+import Model.Entity.UserEntity;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.DateFormat;
@@ -34,7 +36,9 @@ public class BookRoomServlet extends HttpServlet {
 
         String hoursString = hours.toString();
 
-        bookedDAO.addBooked(classes, date, hoursString);
+        int idUser = Integer.parseInt(request.getParameter("idUsers"));
+
+        bookedDAO.addBooked(classes, date, hoursString, idUser);
 
 
         request.getRequestDispatcher("main.jsp").forward(request, response);

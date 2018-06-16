@@ -39,7 +39,7 @@ public class SignInServlet extends HttpServlet {
         else {
             UserEntity userEntity = userDAO.getUser(formEmail, formPassword);
 
-            HttpSession httpSession = request.getSession();
+            HttpSession httpSession = request.getSession(true);
             httpSession.setAttribute("user", userEntity);
             httpSession.setMaxInactiveInterval(30*60);
             request.getRequestDispatcher("main.jsp").forward(request, response);
