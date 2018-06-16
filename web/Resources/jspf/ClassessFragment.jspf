@@ -9,6 +9,7 @@
 
 <div class="container">
     <div style="margin: auto; width: 50%; margin-top: 30vh">
+        <a class="whiteLink" href="main.jsp">Faculty</a>
         <table class="points_table">
             <thead>
             <tr>
@@ -50,3 +51,17 @@
         document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + id;
     });
 </script>
+
+<style>
+
+    .whiteLink{
+        color: white;
+        text-shadow: 2px 2px black;
+        font-weight: bold;
+
+    }
+
+    .whiteLink:hover{
+        color: #e3e3e3;
+    }
+</style>

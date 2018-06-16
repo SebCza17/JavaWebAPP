@@ -12,6 +12,8 @@
 
 <div class="container">
     <div style="margin-top: 30vh">
+        <a class="whiteLink" href="main.jsp">Faculty ></a>
+        <a class="whiteLink" href="main.jsp?faculty=<%=request.getParameter("faculty")%>"> Classes</a>
         <table class="points_table">
             <thead>
             <tr>
@@ -20,7 +22,7 @@
                 <th class="col-xs-1">Month</th>
                 <th class="col-xs-2">Room</th>
                 <th class="col-xs-1">Faculty</th>
-                <th class="col-xs-2">Available</th>
+                <th class="col-xs-2">Booked h</th>
             </tr>
             </thead>
 
@@ -34,7 +36,7 @@
                 ClassesDAO classesDAO = new ClassesDAO();
                 FacultiDAO facultiDAO = new FacultiDAO();
             %>
-            <% if(Integer.parseInt(hourMask.format(date)) < 20) calendar.add(Calendar.DATE, -1);
+            <% if(Integer.parseInt(hourMask.format(date)) < 20) { calendar.add(Calendar.DATE, -1); i--; }
                 for (int x = 0; x < 14; x++) {  calendar.add(Calendar.DATE, 1); date = calendar.getTime();%>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=i%>">
                 <td class="col-xs-1"><%=i++%></td>
@@ -59,6 +61,21 @@
         var id = $(this).attr('value');
         var faculty = getUrlVariable('faculty');
         var classes = getUrlVariable('classes');
-        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + classes + '&day=' + (id-1);
+        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty='+faculty +'&classes=' + classes + '&day=' + id;
     });
 </script>
+
+
+<style>
+
+    .whiteLink{
+        color: white;
+        text-shadow: 2px 2px black;
+        font-weight: bold;
+
+    }
+
+    .whiteLink:hover{
+        color: #e3e3e3;
+    }
+</style>

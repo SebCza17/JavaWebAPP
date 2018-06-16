@@ -5,6 +5,7 @@
 <%@ page import="java.util.Calendar" %>
 <%@ page import="Model.DAO.BookedDAO" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Time" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -14,6 +15,9 @@
 
 <div class="container">
     <div style="margin-top: 30vh">
+        <a class="whiteLink" href="main.jsp">Faculty ></a>
+        <a class="whiteLink" href="main.jsp?faculty=<%=request.getParameter("faculty")%>"> Classes ></a>
+        <a class="whiteLink" href="main.jsp?faculty=<%=request.getParameter("faculty")%>&classes=<%=request.getParameter("classes")%>"> Days</a>
         <table class="points_table">
 
             <form action="${pageContext.request.contextPath}/BookRoomServlet" method="post">
@@ -34,17 +38,18 @@
                 Date date = new Date();
                 SimpleDateFormat dateMaskHH = new SimpleDateFormat ("HH");
                 SimpleDateFormat dateMask = new SimpleDateFormat ("dd.MM.yyyy");
-                int nowHour = Integer.parseInt(dateMaskHH.format(date)); int start = 7; int i = 0;
-                Calendar calendar = Calendar.getInstance(); calendar.setTime(date); calendar.add(Calendar.DATE, Integer.parseInt(request.getParameter("day"))); date = calendar.getTime();
+                int nowHour = Integer.parseInt(dateMaskHH.format(date)); int start = 7; int i = 0; int day; String sendDay = "";
+                Calendar calendar = Calendar.getInstance(); calendar.setTime(date); calendar.add(Calendar.DATE, day = Integer.parseInt(request.getParameter("day"))); date = calendar.getTime();
                 ClassesDAO classesDAO = new ClassesDAO();
                 FacultiDAO facultiDAO = new FacultiDAO();
+                if(request.getParameter("day").equals("0")) start = nowHour;
                 List<Integer> bookedHours = BookedDAO.getBookedHours(Integer.parseInt(request.getParameter("classes")), date);
 
             %>
             <input type="hidden" name="day" value="<%=request.getParameter("day")%>"/>
             <input type="hidden" name="idUsers" value="<%=((UserEntity)session.getAttribute("user")).getId()%>"/>
             <%
-                if(request.getParameter("day").equals("0")) start = nowHour;
+
                 for (int x = start; x < 21; x++) { %>
             <tr <%if (i%2==0 && !bookedHours.contains(x)){ %> class="odd" <%} else if(i%2!=0 && !bookedHours.contains(x)){%>class="even" <%}
             else if(i%2==0 && bookedHours.contains(x)){%> class="bookedOdd" <%} else { %> class="bookedEven" <% } %> value="<%=x%>">
@@ -97,5 +102,16 @@
     .bookedEven {
         background: #ef8c89;
         color: #000;
+    }
+
+     .whiteLink{
+         color: white;
+         text-shadow: 2px 2px black;
+         font-weight: bold;
+
+     }
+
+    .whiteLink:hover{
+        color: #e3e3e3;
     }
 </style>

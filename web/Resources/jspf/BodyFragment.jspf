@@ -7,8 +7,8 @@
 <!------ Include the above in your HEAD tag ---------->
 
 <link href="Resources/CSS/BodyStyle.css" rel="stylesheet" type="text/css"/>
-
 <div class="container">
+
     <div style="margin-top: 30vh">
         <table class="points_table">
             <thead>
