@@ -36,19 +36,16 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li role="presentation"><a href="main.jsp">Main Menu</a></li>
                     <li role="presentation"><a href="#">how to use</a></li>
-                    <li role="presentation"><a href="user.jsp">User Panel</a></li>
+                    <li role="presentation"><a href="#">online streamers</a></li>
                     <li role="presentation"><a href="admin.jsp">Admin Panel</a></li>
                     <li role="presentation"><a href="LogOutServlet">Sign Out</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-            <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
+    <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
 
-               <%if(request.getParameter("faculty") == null){ %>   <%@include file="Resources/jspf/BodyFragment.jspf"%> <%}
-               else if(request.getParameter("classes") == null){ %> <%@include file="Resources/jspf/ClassessFragment.jspf"%> <%}
-               else if(request.getParameter("day") == null){ %> <%@include file="Resources/jspf/DaysFragment.jspf"%> <%}
-               else if(request.getParameter("day") != null){ %> <%@include file="Resources/jspf/HoursFragment.jspf"%> <%}%>
+        <%if(request.getParameter("do") == null){ %> <%@include file="Resources/jspf/UserFragment.jspf"%> <%}%>
     </div>
 </header>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.js"></script>

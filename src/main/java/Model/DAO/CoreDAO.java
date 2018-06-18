@@ -81,4 +81,23 @@ class CoreDAO {
 
         return returnString;
     }
+
+    static int getInt(String query) {
+        int returnedInt = 0;
+
+        CoreDAO coreDAO = new CoreDAO();
+
+        try {
+            ResultSet resultSet = coreDAO.getStatement().executeQuery(query);
+            while(resultSet.next())
+                returnedInt = resultSet.getInt(1);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        coreDAO.close();
+
+        return returnedInt;
+    }
 }

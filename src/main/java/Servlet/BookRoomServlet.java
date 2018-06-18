@@ -41,7 +41,7 @@ public class BookRoomServlet extends HttpServlet {
         bookedDAO.addBooked(classes, date, hoursString, idUser);
 
 
-        request.getRequestDispatcher("main.jsp?test=2").forward(request, response);
+        request.getRequestDispatcher("main.jsp").forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

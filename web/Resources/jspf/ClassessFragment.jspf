@@ -14,11 +14,11 @@
             <thead>
             <tr>
                 <th class="col-xs-1">#</th>
-                <th class="col-xs-4">Name</th>
+                <th class="col-xs-2">Name</th>
                 <th class="col-xs-1">Floor</th>
-                <th class="col-xs-2">Type</th>
+                <th class="col-xs-3">Type</th>
                 <th class="col-xs-1">Capacity</th>
-                <th class="col-xs-3">Available</th>
+                <th class="col-xs-4">Available</th>
             </tr>
             </thead>
 
@@ -28,11 +28,11 @@
                 for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty))) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=classesEntity.getId()%>">
                 <td class="col-xs-1"><%=i++%></td>
-                <td class="col-xs-4"><%=classesEntity.getName()%></td>
+                <td class="col-xs-2"><%=classesEntity.getName()%></td>
                 <td class="col-xs-1"><%=classesEntity.getFloor()%></td>
-                <td class="col-xs-2"><%=classesEntity.getIdType()%></td>
+                <td class="col-xs-3"><%=classesEntity.getClassType()%></td>
                 <td class="col-xs-1"><%=classesEntity.getCapacity()%></td>
-                <td class="col-xs-3"><%=classesEntity.getAvailable()%></td>
+                <td class="col-xs-4"><%=classesEntity.getAvailable()%></td>
             </tr>
             <% }%>
 

@@ -3,7 +3,7 @@ package Model.Entity;
 public class ClassesEntity {
     private int id;
     private int idFaculty;
-    private int idType;
+    private String classType;
     private String name;
     private int floor;
     private int capacity;
@@ -25,12 +25,12 @@ public class ClassesEntity {
         this.idFaculty = idFaculty;
     }
 
-    public int getIdType() {
-        return idType;
+    public String getClassType() {
+        return classType;
     }
 
-    public void setIdType(int idType) {
-        this.idType = idType;
+    public void setClassType(String classType) {
+        this.classType = classType;
     }
 
     public String getName() {

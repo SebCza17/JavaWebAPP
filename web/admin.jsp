@@ -37,7 +37,7 @@
                     <li role="presentation"><a href="main.jsp">Main Menu</a></li>
                     <li role="presentation"><a href="#">how to use</a></li>
                     <li role="presentation"><a href="#">online streamers</a></li>
-                    <li role="presentation"><a href="admin.jsp">Admin Panel</a></li>
+                    <li role="presentation"><a href="">Admin Panel</a></li>
                     <li role="presentation"><a href="LogOutServlet">Sign Out</a></li>
                 </ul>
             </div>

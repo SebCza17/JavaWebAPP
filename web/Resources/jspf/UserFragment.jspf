@@ -1,0 +1,107 @@
+<%@ page import="Model.DAO.ClassesDAO" %>
+<%@ page import="Model.Entity.ClassesEntity" %>
+<%@ page import="java.util.Date" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Calendar" %>
+<%@ page import="Model.DAO.BookedDAO" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.sql.Time" %>
+<%@ page import="Model.DAO.FacultiDAO" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Model.Entity.BookedEntity" %>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="Resources/CSS/BodyStyle.css" rel="stylesheet" type="text/css"/>
+
+<div class="container">
+    <div style="margin-top: 30vh">
+        <table class="points_table">
+
+                <thead>
+                <tr>
+                    <th class="col-xs-1">#</th>
+                    <th class="col-xs-4">Hour</th>
+                    <th class="col-xs-2">Day</th>
+                    <th class="col-xs-2">Room</th>
+                    <th class="col-xs-1">Faculty</th>
+                    <th class="col-xs-2">Cancel</th>
+                </tr>
+                </thead>
+                <tbody class="points_table_scrollbar">
+                    <%
+                        Date date = new Date();
+                SimpleDateFormat dateMaskHH = new SimpleDateFormat ("HH");
+                SimpleDateFormat dateMask = new SimpleDateFormat ("dd.MM.yyyy");
+                List<BookedEntity> bookedEntities = BookedDAO.getBookedList(((UserEntity)session.getAttribute("user")).getId());
+                FacultiDAO facultiDAO = new FacultiDAO();
+                int i = 0;
+
+                 %>
+
+                    <% for (BookedEntity bookedEntity : bookedEntities) { %>
+                        <% for (Integer integerList : bookedEntity.getHours()) { if(integerList >= Integer.parseInt(dateMaskHH.format(date)) || date != bookedEntity.getDay()){%>
+                <tr <%if (i%2==0){ %> class="odd" <%} else {%>class="even" <%}%>>
+                    <td class="col-xs-1"><%=i++%></td>
+                    <td class="col-xs-4"><%=integerList%></td>
+                    <td class="col-xs-2"><%=bookedEntity.getDay()%></td>
+                    <td class="col-xs-2"><%=ClassesDAO.getName(bookedEntity.getIdClasses())%></td>
+                    <td class="col-xs-1"><%=facultiDAO.getName(ClassesDAO.getFacultyId(bookedEntity.getIdClasses()))%></td>
+                    <td class="col-xs-2">asd</td>
+                </tr>
+                    <%}} }%>
+
+
+                </tbody>
+        </table>
+    </div>
+</div>
+<script src="Resources/JS/URLJS.js" type="text/javascript"></script>
+
+<style>
+    button {
+        background-color: #ff3100;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #962800;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+
+    .bookedOdd {
+        background: #ff8f8c;
+        color: #000;
+    }
+
+    .bookedEven {
+        background: #ef8c89;
+        color: #000;
+    }
+
+    .whiteLink{
+        color: white;
+        text-shadow: 2px 2px black;
+        font-weight: bold;
+
+    }
+
+    .whiteLink:hover{
+        color: #e3e3e3;
+    }
+</style>

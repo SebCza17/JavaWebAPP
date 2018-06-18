@@ -10,39 +10,42 @@
       <Current>1</Current>
       <Visible>1</Visible>
     </database>
-    <database id="3" parent="1" name="pizzaDatabase">
+    <database id="3" parent="1" name="asdasd">
+      <ObjectId>23587</ObjectId>
+    </database>
+    <database id="4" parent="1" name="pizzaDatabase">
       <ObjectId>18110</ObjectId>
     </database>
-    <database id="4" parent="1" name="postgres">
+    <database id="5" parent="1" name="postgres">
       <ObjectId>12292</ObjectId>
       <Comment>default administrative connection database</Comment>
     </database>
-    <role id="5" parent="1" name="pg_monitor">
+    <role id="6" parent="1" name="pg_monitor">
       <ObjectId>3373</ObjectId>
       <Inherit>1</Inherit>
       <ConnectionLimit>-1</ConnectionLimit>
     </role>
-    <role id="6" parent="1" name="pg_read_all_settings">
+    <role id="7" parent="1" name="pg_read_all_settings">
       <ObjectId>3374</ObjectId>
       <Inherit>1</Inherit>
       <ConnectionLimit>-1</ConnectionLimit>
     </role>
-    <role id="7" parent="1" name="pg_read_all_stats">
+    <role id="8" parent="1" name="pg_read_all_stats">
       <ObjectId>3375</ObjectId>
       <Inherit>1</Inherit>
       <ConnectionLimit>-1</ConnectionLimit>
     </role>
-    <role id="8" parent="1" name="pg_signal_backend">
+    <role id="9" parent="1" name="pg_signal_backend">
       <ObjectId>4200</ObjectId>
       <Inherit>1</Inherit>
       <ConnectionLimit>-1</ConnectionLimit>
     </role>
-    <role id="9" parent="1" name="pg_stat_scan_tables">
+    <role id="10" parent="1" name="pg_stat_scan_tables">
       <ObjectId>3377</ObjectId>
       <Inherit>1</Inherit>
       <ConnectionLimit>-1</ConnectionLimit>
     </role>
-    <role id="10" parent="1" name="postgres">
+    <role id="11" parent="1" name="postgres">
       <ObjectId>10</ObjectId>
       <SuperRole>1</SuperRole>
       <Inherit>1</Inherit>
@@ -53,74 +56,74 @@
       <ConnectionLimit>-1</ConnectionLimit>
       <BypassRls>1</BypassRls>
     </role>
-    <schema id="11" parent="2" name="information_schema">
+    <schema id="12" parent="2" name="information_schema">
       <ObjectId>12002</ObjectId>
     </schema>
-    <schema id="12" parent="2" name="pg_catalog">
+    <schema id="13" parent="2" name="pg_catalog">
       <ObjectId>11</ObjectId>
       <Comment>system catalog schema</Comment>
     </schema>
-    <schema id="13" parent="2" name="pg_temp_1">
+    <schema id="14" parent="2" name="pg_temp_1">
       <ObjectId>11736</ObjectId>
     </schema>
-    <schema id="14" parent="2" name="pg_toast">
+    <schema id="15" parent="2" name="pg_toast">
       <ObjectId>99</ObjectId>
       <Comment>reserved schema for TOAST tables</Comment>
     </schema>
-    <schema id="15" parent="2" name="pg_toast_temp_1">
+    <schema id="16" parent="2" name="pg_toast_temp_1">
       <ObjectId>11737</ObjectId>
     </schema>
-    <schema id="16" parent="2" name="public">
+    <schema id="17" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-06-16.15:56:58.171</IntrospectionTimestamp>
-      <IntrospectionStateNumber>7160</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-06-17.15:15:59.962</IntrospectionTimestamp>
+      <IntrospectionStateNumber>7229</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
-    <access-method id="17" parent="2" name="btree">
+    <access-method id="18" parent="2" name="btree">
       <ObjectId>403</ObjectId>
       <Comment>b-tree index access method</Comment>
       <Handler>pg_catalog.bthandler</Handler>
       <HandlerId>330</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="18" parent="2" name="hash">
+    <access-method id="19" parent="2" name="hash">
       <ObjectId>405</ObjectId>
       <Comment>hash index access method</Comment>
       <Handler>pg_catalog.hashhandler</Handler>
       <HandlerId>331</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="19" parent="2" name="gist">
+    <access-method id="20" parent="2" name="gist">
       <ObjectId>783</ObjectId>
       <Comment>GiST index access method</Comment>
       <Handler>pg_catalog.gisthandler</Handler>
       <HandlerId>332</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="20" parent="2" name="gin">
+    <access-method id="21" parent="2" name="gin">
       <ObjectId>2742</ObjectId>
       <Comment>GIN index access method</Comment>
       <Handler>pg_catalog.ginhandler</Handler>
       <HandlerId>333</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="21" parent="2" name="spgist">
+    <access-method id="22" parent="2" name="spgist">
       <ObjectId>4000</ObjectId>
       <Comment>SP-GiST index access method</Comment>
       <Handler>pg_catalog.spghandler</Handler>
       <HandlerId>334</HandlerId>
       <Type>index</Type>
     </access-method>
-    <access-method id="22" parent="2" name="brin">
+    <access-method id="23" parent="2" name="brin">
       <ObjectId>3580</ObjectId>
       <Comment>block range index (BRIN) access method</Comment>
       <Handler>pg_catalog.brinhandler</Handler>
       <HandlerId>335</HandlerId>
       <Type>index</Type>
     </access-method>
-    <sequence id="23" parent="16" name="booked_id_seq">
+    <sequence id="24" parent="17" name="booked_id_seq">
       <ObjectId>23573</ObjectId>
       <StateNumber>7141</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -128,14 +131,14 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="24" parent="16" name="hibernate_sequence">
+    <sequence id="25" parent="17" name="hibernate_sequence">
       <ObjectId>23507</ObjectId>
       <StateNumber>7070</StateNumber>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>bigint</DataType>
     </sequence>
-    <sequence id="25" parent="16" name="classes_id_seq">
+    <sequence id="26" parent="17" name="classes_id_seq">
       <ObjectId>23560</ObjectId>
       <StateNumber>7129</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -143,7 +146,7 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="26" parent="16" name="faculty_id_seq">
+    <sequence id="27" parent="17" name="faculty_id_seq">
       <ObjectId>23552</ObjectId>
       <StateNumber>7121</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -151,7 +154,7 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="27" parent="16" name="usersGroup_id_seq">
+    <sequence id="28" parent="17" name="usersGroup_id_seq">
       <ObjectId>23526</ObjectId>
       <StateNumber>7091</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -159,7 +162,7 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="28" parent="16" name="users_id_seq">
+    <sequence id="29" parent="17" name="users_id_seq">
       <ObjectId>23518</ObjectId>
       <StateNumber>7085</StateNumber>
       <SequenceIdentity>1..2147483647</SequenceIdentity>
@@ -167,27 +170,27 @@
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="29" parent="16" name="booked">
+    <table id="30" parent="17" name="booked">
       <ObjectId>23575</ObjectId>
       <StateNumber>7155</StateNumber>
     </table>
-    <table id="30" parent="16" name="classes">
+    <table id="31" parent="17" name="classes">
       <ObjectId>23562</ObjectId>
-      <StateNumber>7131</StateNumber>
+      <StateNumber>7225</StateNumber>
     </table>
-    <table id="31" parent="16" name="faculty">
+    <table id="32" parent="17" name="faculty">
       <ObjectId>23554</ObjectId>
       <StateNumber>7130</StateNumber>
     </table>
-    <table id="32" parent="16" name="users">
+    <table id="33" parent="17" name="users">
       <ObjectId>23520</ObjectId>
       <StateNumber>7155</StateNumber>
     </table>
-    <table id="33" parent="16" name="users_group">
+    <table id="34" parent="17" name="users_group">
       <ObjectId>23528</ObjectId>
       <StateNumber>7111</StateNumber>
     </table>
-    <column id="34" parent="29" name="id">
+    <column id="35" parent="30" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -196,45 +199,45 @@
       <TypeId>23</TypeId>
       <SequenceName>booked_id_seq</SequenceName>
     </column>
-    <column id="35" parent="29" name="idclass">
+    <column id="36" parent="30" name="idclass">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7143</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="36" parent="29" name="days">
+    <column id="37" parent="30" name="days">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7160</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <column id="37" parent="29" name="hours">
+    <column id="38" parent="30" name="hours">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7141</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="38" parent="29" name="idusers">
+    <column id="39" parent="30" name="idusers">
       <Position>5</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>7154</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="39" parent="29" name="booked_pkey">
+    <index id="40" parent="30" name="booked_pkey">
       <ObjectId>23579</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="40" parent="29" name="booked_pkey">
+    <key id="41" parent="30" name="booked_pkey">
       <ObjectId>23580</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>booked_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="41" parent="29" name="booked_users_id_fk">
+    <foreign-key id="42" parent="30" name="booked_users_id_fk">
       <ObjectId>23582</ObjectId>
       <ColNames>idusers</ColNames>
       <RefTableId>23520</RefTableId>
@@ -243,7 +246,7 @@
       <RefKeyName>users_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="42" parent="30" name="id">
+    <column id="43" parent="31" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -252,58 +255,57 @@
       <TypeId>23</TypeId>
       <SequenceName>classes_id_seq</SequenceName>
     </column>
-    <column id="43" parent="30" name="idfacult">
+    <column id="44" parent="31" name="idfacult">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7139</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="44" parent="30" name="idType">
-      <Position>3</Position>
-      <DataType>integer|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>7129</StateNumber>
-      <TypeId>23</TypeId>
-    </column>
-    <column id="45" parent="30" name="name">
+    <column id="45" parent="31" name="name">
       <Position>4</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7129</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="46" parent="30" name="floor">
+    <column id="46" parent="31" name="floor">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>7129</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="47" parent="30" name="capacity">
+    <column id="47" parent="31" name="capacity">
       <Position>7</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>7129</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="48" parent="30" name="isAvailable">
+    <column id="48" parent="31" name="isavailable">
       <Position>8</Position>
       <DataType>boolean|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>7131</StateNumber>
+      <StateNumber>7228</StateNumber>
       <TypeId>16</TypeId>
     </column>
-    <index id="49" parent="30" name="classes_pkey">
+    <column id="49" parent="31" name="classtype">
+      <Position>9</Position>
+      <DataType>varchar(50)|0s</DataType>
+      <StateNumber>7229</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="50" parent="31" name="classes_pkey">
       <ObjectId>23566</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="50" parent="30" name="classes_pkey">
+    <key id="51" parent="31" name="classes_pkey">
       <ObjectId>23567</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>classes_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="51" parent="30" name="classes_faculty__fk">
+    <foreign-key id="52" parent="31" name="classes_faculty__fk">
       <ObjectId>23568</ObjectId>
       <ColNames>idfacult</ColNames>
       <RefTableId>23554</RefTableId>
@@ -313,7 +315,7 @@
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
-    <column id="52" parent="31" name="id">
+    <column id="53" parent="32" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -322,45 +324,45 @@
       <TypeId>23</TypeId>
       <SequenceName>faculty_id_seq</SequenceName>
     </column>
-    <column id="53" parent="31" name="name">
+    <column id="54" parent="32" name="name">
       <Position>2</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7122</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="54" parent="31" name="shortname">
+    <column id="55" parent="32" name="shortname">
       <Position>3</Position>
       <DataType>varchar(10)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7122</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="55" parent="31" name="wn">
+    <column id="56" parent="32" name="wn">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>7121</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="56" parent="31" name="address">
+    <column id="57" parent="32" name="address">
       <Position>5</Position>
       <DataType>varchar(40)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7121</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="57" parent="31" name="faculty_pkey">
+    <index id="58" parent="32" name="faculty_pkey">
       <ObjectId>23558</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="58" parent="31" name="faculty_pkey">
+    <key id="59" parent="32" name="faculty_pkey">
       <ObjectId>23559</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>faculty_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="59" parent="32" name="id">
+    <column id="60" parent="33" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -369,39 +371,39 @@
       <TypeId>23</TypeId>
       <SequenceName>users_id_seq</SequenceName>
     </column>
-    <column id="60" parent="32" name="username">
+    <column id="61" parent="33" name="username">
       <Position>2</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="61" parent="32" name="email">
+    <column id="62" parent="33" name="email">
       <Position>3</Position>
       <DataType>varchar(100)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="62" parent="32" name="password">
+    <column id="63" parent="33" name="password">
       <Position>4</Position>
       <DataType>varchar(300)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7085</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="63" parent="32" name="users_pkey">
+    <index id="64" parent="33" name="users_pkey">
       <ObjectId>23524</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="64" parent="32" name="users_pkey">
+    <key id="65" parent="33" name="users_pkey">
       <ObjectId>23525</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>users_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="65" parent="33" name="id">
+    <column id="66" parent="34" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -410,32 +412,32 @@
       <TypeId>23</TypeId>
       <SequenceName>usersGroup_id_seq</SequenceName>
     </column>
-    <column id="66" parent="33" name="idusers">
+    <column id="67" parent="34" name="idusers">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7106</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="67" parent="33" name="grouptext">
+    <column id="68" parent="34" name="grouptext">
       <Position>3</Position>
       <DataType>varchar(50)|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>7099</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="68" parent="33" name="usersGroup_pkey">
+    <index id="69" parent="34" name="usersGroup_pkey">
       <ObjectId>23532</ObjectId>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="69" parent="33" name="usersGroup_pkey">
+    <key id="70" parent="34" name="usersGroup_pkey">
       <ObjectId>23533</ObjectId>
       <ColNames>id</ColNames>
       <UnderlyingIndexName>usersGroup_pkey</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="70" parent="33" name="users_group_users_id_fk">
+    <foreign-key id="71" parent="34" name="users_group_users_id_fk">
       <ObjectId>23539</ObjectId>
       <ColNames>idusers</ColNames>
       <RefTableId>23520</RefTableId>
