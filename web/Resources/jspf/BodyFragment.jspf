@@ -1,6 +1,7 @@
 <%@ page import="Model.Entity.FacultyEntity" %>
 <%@ page import="java.util.List" %>
 <%@ page import="Model.DAO.FacultiDAO" %>
+<%@ page import="java.io.PrintWriter" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -8,31 +9,37 @@
 
 <link href="Resources/CSS/BodyStyle.css" rel="stylesheet" type="text/css"/>
 <div class="container">
-
+    <%
+        int i = 1;
+        int orderType = 0;
+        if(request.getParameter("orderby") != null) {
+           orderType = Integer.parseInt(request.getParameter("orderby"));
+        }
+    %>
     <div style="margin-top: 30vh">
         <table class="points_table">
             <thead>
             <tr>
                 <th class="col-xs-1">#</th>
-                <th class="col-xs-6">Faculty</th>
-                <th class="col-xs-1">Short</th>
-                <th class="col-xs-1">W</th>
-                <th class="col-xs-2">Address</th>
+                <th class="col-xs-6" <%if (orderType!=0){ %> value="0" <%} else{%>value="1" <%}%>">Faculty</th>
+                <th class="col-xs-1" <%if (orderType!=2){ %> value="2" <%} else{%>value="3" <%}%>>Short</th>
+                <th class="col-xs-1" <%if (orderType!=4){ %> value="4" <%} else{%>value="5" <%}%>>W</th>
+                <th class="col-xs-2" <%if (orderType!=6){ %> value="6" <%} else{%>value="7" <%}%>>Address</th>
                 <th class="col-xs-1">n Classes</th>
             </tr>
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <%int i = 1;%>
+
             <%
-                for (FacultyEntity faculty: FacultiDAO.getFaculties()) { %>
-            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%> value="<%=faculty.getId()%>">
-                <td class="col-xs-1"><%=i++%></td>
-                <td class="col-xs-6"><%=faculty.getName()%></td>
-                <td class="col-xs-1"><%=faculty.getShortname()%></td>
-                <td class="col-xs-1"><%=faculty.getWn()%></td>
-                <td class="col-xs-2"><%=faculty.getAddress()%></td>
-                <td class="col-xs-1">1</td>
+                for (FacultyEntity faculty: FacultiDAO.getFaculties(orderType)) { %>
+            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
+                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=i++%></td>
+                <td class="col-xs-6" value="<%=faculty.getId()%>"><%=faculty.getName()%></td>
+                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
+                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
+                <td class="col-xs-2" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
+                <td class="col-xs-1" value="<%=faculty.getId()%>">1</td>
             </tr>
                <% }%>
 
@@ -43,9 +50,28 @@
 </div>
 
 <script>
-    $(".points_table").on('click','tr',function(e){
+    $(".points_table").on('click','td',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
+
         document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty=' + id;
+
+    });
+
+    $(".points_table").on('click','th',function(e){
+        e.preventDefault();
+        var id = $(this).attr('value');
+        if(id != null)
+        document.location.href = '${pageContext.request.contextPath}/main.jsp?orderby=' + id;
+
     });
 </script>
+
+<style>
+    th{
+        cursor: pointer;
+    }
+    th:hover{
+        color: #d5d626;
+    }
+</style>

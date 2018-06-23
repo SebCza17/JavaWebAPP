@@ -11,7 +11,7 @@ import java.util.logging.Logger;
 
 public class FacultiDAO {
 
-    public static List<FacultyEntity> getFaculties() {
+    public static List<FacultyEntity> getFaculties(int orderType) {
         List<FacultyEntity> facultyEntities = new ArrayList<>();
         FacultyEntity facultyEntity = null;
         ResultSet resultSet = null;
@@ -20,7 +20,26 @@ public class FacultiDAO {
         CoreDAO coreDAO = new CoreDAO();
 
         try {
-            resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By name");
+            if(orderType == 0) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By name");
+            }else if(orderType == 1) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By name DESC");
+            }else if(orderType == 2) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By shortname");
+            }else if(orderType == 3) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By shortname DESC");
+            }else if(orderType == 4) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By wn");
+            }else if(orderType == 5) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By wn DESC");
+            }else if(orderType == 6) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By address");
+            }else if(orderType == 7) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By address DESC");
+            }else  {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty");
+            }
+
 
             while (resultSet.next()) {
                 facultyEntity = new FacultyEntity();
