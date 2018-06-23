@@ -39,6 +39,7 @@
 .points_table tbody td, .points_table thead > tr> th{
     float: left;
     border-bottom-width: 0;
+
 }
 
 .points_table>tbody>tr>td, .points_table>tbody>tr>th, .points_table>tfoot>tr>td, .points_table>tfoot>tr>th, .points_table>thead>tr>td, .points_table>thead>tr>th{
@@ -80,3 +81,4 @@
     background-color: #ff3100;
     background-image: -webkit-linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.4) 50%, transparent, transparent)
 }
+

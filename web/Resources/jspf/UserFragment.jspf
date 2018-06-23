@@ -17,7 +17,7 @@
 <link href="Resources/CSS/BodyStyle.css" rel="stylesheet" type="text/css"/>
 
 <div class="container">
-    <div style="margin-top: 30vh">
+    <div style="margin: auto; width: 50%; margin-top: 30vh">
         <table class="points_table">
 
                 <thead>
@@ -40,19 +40,20 @@
                 int i = 0;
 
                  %>
-
+                    <form action="DellBookedClassServlet" method="post">
                     <% for (BookedEntity bookedEntity : bookedEntities) { %>
                         <% for (Integer integerList : bookedEntity.getHours()) { if(integerList >= Integer.parseInt(dateMaskHH.format(date)) || date != bookedEntity.getDay()){%>
                 <tr <%if (i%2==0){ %> class="odd" <%} else {%>class="even" <%}%>>
+                    <<input type="hidden" name="formHour" value="<%=integerList%>">
                     <td class="col-xs-1"><%=i++%></td>
                     <td class="col-xs-4"><%=integerList%></td>
                     <td class="col-xs-2"><%=bookedEntity.getDay()%></td>
                     <td class="col-xs-2"><%=ClassesDAO.getName(bookedEntity.getIdClasses())%></td>
                     <td class="col-xs-1"><%=facultiDAO.getName(ClassesDAO.getFacultyId(bookedEntity.getIdClasses()))%></td>
-                    <td class="col-xs-2">asd</td>
+                    <td class="col-xs-2"><button value="<%=bookedEntity.getId()%>" name="formDelId">Del</button></td>
                 </tr>
-                    <%}} }%>
-
+                    <%}}}%>
+                    </form>
 
                 </tbody>
         </table>

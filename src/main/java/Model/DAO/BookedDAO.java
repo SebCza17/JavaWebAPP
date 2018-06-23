@@ -17,7 +17,7 @@ import java.util.List;
 public class BookedDAO {
 
     public void addBooked(int formIdClasses, Date formDate, String formHours, int formIdUser) {
-        if(!isAlreadyIn(formIdClasses, formDate, formHours)) {
+        if (!isAlreadyIn(formIdClasses, formDate, formHours)) {
             LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
             java.sql.Date sqlDate = java.sql.Date.valueOf(dateLocal);
             try {
@@ -42,11 +42,11 @@ public class BookedDAO {
         }
     }
 
-    private Boolean isAlreadyIn(int formIdClasses, Date formDate, String formHours){
+    private Boolean isAlreadyIn(int formIdClasses, Date formDate, String formHours) {
 
 
         LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        java.sql.Date sqlDate = java.sql.Date.valueOf( dateLocal );
+        java.sql.Date sqlDate = java.sql.Date.valueOf(dateLocal);
 
         try {
             CoreDAO coreDAO = new CoreDAO();
@@ -71,14 +71,14 @@ public class BookedDAO {
         }
     }
 
-    public static List<Integer> getBookedHours(int formIdClass, Date formDate){
+    public static List<Integer> getBookedHours(int formIdClass, Date formDate) {
         List<Integer> returnedIntTabs = new ArrayList<>();
 
 
         LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        java.sql.Date sqlDate = java.sql.Date.valueOf( dateLocal );
+        java.sql.Date sqlDate = java.sql.Date.valueOf(dateLocal);
 
-        try{
+        try {
             CoreDAO coreDAO = new CoreDAO();
 
             PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("SELECT hours FROM booked WHERE idclass = ? and days = ?");
@@ -88,7 +88,7 @@ public class BookedDAO {
 
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
 
                 String[] toSplit = resultSet.getString("hours").split(":");
 
@@ -99,7 +99,7 @@ public class BookedDAO {
             }
 
             coreDAO.close();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e);
 
         }
@@ -107,6 +107,86 @@ public class BookedDAO {
 
         return returnedIntTabs;
     }
+
+    private static String getBookedHours(int formIdBook) {
+        String toReturn = "";
+        try {
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("SELECT hours FROM booked WHERE id = ?");
+
+            preparedStatement.setInt(1, formIdBook);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                toReturn = resultSet.getString("hours");
+
+            }
+
+            coreDAO.close();
+        } catch (Exception e) {
+            System.out.println(e);
+
+        }
+
+
+        return toReturn;
+    }
+
+    private static void delBooked(int formIdBook) {
+        try {
+            CoreDAO coreDAO = new CoreDAO();
+
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("DELETE FROM booked WHERE id = ?");
+
+
+            preparedStatement.setInt(1, formIdBook);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Boolean updateBookedHour(int formIdBook, String formHour) {
+
+        String newFormHours = getBookedHours(formIdBook).replace(formHour + ":", "");
+        if (newFormHours.length() != 0) {
+            try {
+                CoreDAO coreDAO = new CoreDAO();
+
+
+                PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("UPDATE booked SET hours = ? WHERE id = ?");
+
+
+                preparedStatement.setString(1, newFormHours);
+                preparedStatement.setInt(2, formIdBook);
+
+                preparedStatement.executeUpdate();
+
+                coreDAO.close();
+
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false;
+            }
+
+            return true;
+        } else {
+            delBooked(formIdBook);
+            return true;
+        }
+
+    }
+
+
 
     public static int countBookedHours(int formRoom, Date formDate){
 
@@ -138,6 +218,8 @@ public class BookedDAO {
 
                 BookedEntity bookedEntity = new BookedEntity();
                 List<Integer> integerList = new ArrayList<>();
+
+                bookedEntity.setId(resultSet.getInt("id"));
 
                 bookedEntity.setIdClasses(resultSet.getInt("idclass"));
                 bookedEntity.setDay(resultSet.getDate("days"));
