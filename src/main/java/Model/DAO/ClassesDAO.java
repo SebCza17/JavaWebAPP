@@ -12,7 +12,7 @@ import java.util.List;
 
 public class ClassesDAO {
 
-    public List<ClassesEntity> getClassesList(int formIdFaculty) {
+    public List<ClassesEntity> getClassesList(int formIdFaculty, int formOrder) {
         List<ClassesEntity> classesEntities = new ArrayList<>();
         ClassesEntity classesEntity = null;
         ResultSet resultSet = null;
@@ -20,7 +20,28 @@ public class ClassesDAO {
         CoreDAO coreDAO = new CoreDAO();
 
         try {
-            resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By name");
+            if(formOrder == 0) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By name");
+            }else if(formOrder == 1) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By name DESC");
+            }else if(formOrder == 2) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By floor ");
+            }else if(formOrder == 3) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By floor DESC");
+            }else if(formOrder == 4) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By classtype ");
+            }else if(formOrder == 5) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By classtype DESC");
+            }else if(formOrder == 6) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By capacity ");
+            }else if(formOrder == 7) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By capacity DESC");
+            }else if(formOrder == 8) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By isavailable ");
+            }else if(formOrder == 9) {
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By isavailable DESC");
+            }else
+                resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "'");
 
             while (resultSet.next()) {
                 classesEntity = new ClassesEntity();
@@ -80,13 +101,13 @@ public class ClassesDAO {
         }
     }
 
-    public static Boolean delClasses(int formFacultyID) {
+    public static Boolean delClasses(int formClassID) {
         try {
             CoreDAO coreDAO = new CoreDAO();
 
-            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("DELETE FROM classes WHERE idfacult = ?");
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("DELETE FROM classes WHERE id = ?");
 
-            preparedStatement.setInt(1, formFacultyID);
+            preparedStatement.setInt(1, formClassID);
 
             preparedStatement.executeUpdate();
 

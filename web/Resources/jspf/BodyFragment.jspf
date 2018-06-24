@@ -39,7 +39,7 @@
                 <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
                 <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
                 <td class="col-xs-2 rowClick" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
-                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId()).size()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId(), -1).size()%></td>
             </tr>
                <% }%>
             </form>
