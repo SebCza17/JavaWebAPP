@@ -76,8 +76,8 @@
     <schema id="17" parent="2" name="public">
       <ObjectId>2200</ObjectId>
       <Comment>standard public schema</Comment>
-      <IntrospectionTimestamp>2018-06-17.15:15:59.962</IntrospectionTimestamp>
-      <IntrospectionStateNumber>7229</IntrospectionStateNumber>
+      <IntrospectionTimestamp>2018-06-24.11:02:17.737</IntrospectionTimestamp>
+      <IntrospectionStateNumber>7287</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -176,11 +176,11 @@
     </table>
     <table id="31" parent="17" name="classes">
       <ObjectId>23562</ObjectId>
-      <StateNumber>7225</StateNumber>
+      <StateNumber>7287</StateNumber>
     </table>
     <table id="32" parent="17" name="faculty">
       <ObjectId>23554</ObjectId>
-      <StateNumber>7130</StateNumber>
+      <StateNumber>7287</StateNumber>
     </table>
     <table id="33" parent="17" name="users">
       <ObjectId>23520</ObjectId>
@@ -306,13 +306,14 @@
       <Primary>1</Primary>
     </key>
     <foreign-key id="52" parent="31" name="classes_faculty__fk">
-      <ObjectId>23568</ObjectId>
+      <ObjectId>23602</ObjectId>
       <ColNames>idfacult</ColNames>
       <RefTableId>23554</RefTableId>
       <RefColPositions>1</RefColPositions>
       <RefTableName>faculty</RefTableName>
       <RefKeyName>faculty_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
+      <OnDelete>cascade</OnDelete>
       <OnUpdate>cascade</OnUpdate>
     </foreign-key>
     <column id="53" parent="32" name="id">

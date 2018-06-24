@@ -30,19 +30,19 @@
             </thead>
 
             <tbody class="points_table_scrollbar">
-
-            <%
+            <form action="DelFacultyServlet" method="post" onsubmit="return confirm('Are you sure? (All linked classes will be deleted!!!)');">
+            <%  ClassesDAO classesDAO = new ClassesDAO();
                 for (FacultyEntity faculty: FacultiDAO.getFaculties(orderType)) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
-                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=i++%></td>
-                <td class="col-xs-6" value="<%=faculty.getId()%>"><%=faculty.getName()%></td>
-                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
-                <td class="col-xs-1" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
-                <td class="col-xs-2" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
-                <td class="col-xs-1" value="<%=faculty.getId()%>">1</td>
+                <td class="col-xs-1"><button value="<%=faculty.getId()%>" name="formDelId">Del</button></td>
+                <td class="col-xs-6 rowClick" value="<%=faculty.getId()%>"><%=faculty.getName()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
+                <td class="col-xs-2 rowClick" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId()).size()%></td>
             </tr>
                <% }%>
-
+            </form>
 
             </tbody>
         </table>
@@ -50,11 +50,12 @@
 </div>
 
 <script>
-    $(".points_table").on('click','td',function(e){
+
+    $(".rowClick").on('click',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
-
         document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty=' + id;
+
 
     });
 
@@ -65,9 +66,34 @@
         document.location.href = '${pageContext.request.contextPath}/main.jsp?orderby=' + id;
 
     });
+
 </script>
 
 <style>
+    button {
+        background-color: #ff3100;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #962800;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+
+
     th{
         cursor: pointer;
     }

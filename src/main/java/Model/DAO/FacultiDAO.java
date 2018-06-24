@@ -20,23 +20,23 @@ public class FacultiDAO {
         CoreDAO coreDAO = new CoreDAO();
 
         try {
-            if(orderType == 0) {
+            if (orderType == 0) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By name");
-            }else if(orderType == 1) {
+            } else if (orderType == 1) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By name DESC");
-            }else if(orderType == 2) {
+            } else if (orderType == 2) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By shortname");
-            }else if(orderType == 3) {
+            } else if (orderType == 3) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By shortname DESC");
-            }else if(orderType == 4) {
+            } else if (orderType == 4) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By wn");
-            }else if(orderType == 5) {
+            } else if (orderType == 5) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By wn DESC");
-            }else if(orderType == 6) {
+            } else if (orderType == 6) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By address");
-            }else if(orderType == 7) {
+            } else if (orderType == 7) {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty order By address DESC");
-            }else  {
+            } else {
                 resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty");
             }
 
@@ -62,12 +62,12 @@ public class FacultiDAO {
         return facultyEntities;
     }
 
-    public String getName(int id){
+    public String getName(int id) {
 
-        return CoreDAO.getString("Select shortname From faculty where id = "+ id + "");
+        return CoreDAO.getString("Select shortname From faculty where id = " + id + "");
     }
 
-    public static Boolean addFaculty(String formName, String formShort, int formW, String formAddress){
+    public static Boolean addFaculty(String formName, String formShort, int formW, String formAddress) {
 
         try {
             CoreDAO coreDAO = new CoreDAO();
@@ -84,9 +84,31 @@ public class FacultiDAO {
             coreDAO.close();
 
             return true;
-        }catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e);
             return false;
         }
     }
+
+    public static Boolean delFaculty(int formFacultyID) {
+        try {
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("DELETE FROM faculty WHERE id = ?");
+
+            preparedStatement.setInt(1, formFacultyID);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }
+

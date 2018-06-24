@@ -23,8 +23,8 @@
                 <thead>
                 <tr>
                     <th class="col-xs-1">#</th>
-                    <th class="col-xs-4">Hour</th>
-                    <th class="col-xs-2">Day</th>
+                    <th class="col-xs-3">Hour</th>
+                    <th class="col-xs-3">Day</th>
                     <th class="col-xs-2">Room</th>
                     <th class="col-xs-1">Faculty</th>
                     <th class="col-xs-2">Cancel</th>
@@ -46,8 +46,8 @@
                 <tr <%if (i%2==0){ %> class="odd" <%} else {%>class="even" <%}%>>
                     <<input type="hidden" name="formHour" value="<%=integerList%>">
                     <td class="col-xs-1"><%=i++%></td>
-                    <td class="col-xs-4"><%=integerList%></td>
-                    <td class="col-xs-2"><%=bookedEntity.getDay()%></td>
+                    <td class="col-xs-3"><%=integerList%></td>
+                    <td class="col-xs-3"><%=bookedEntity.getDay()%></td>
                     <td class="col-xs-2"><%=ClassesDAO.getName(bookedEntity.getIdClasses())%></td>
                     <td class="col-xs-1"><%=facultiDAO.getName(ClassesDAO.getFacultyId(bookedEntity.getIdClasses()))%></td>
                     <td class="col-xs-2"><button value="<%=bookedEntity.getId()%>" name="formDelId">Del</button></td>

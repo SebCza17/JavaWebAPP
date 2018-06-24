@@ -1,6 +1,7 @@
 package Servlet;
 
 import Model.DAO.BookedDAO;
+import Model.DAO.FacultiDAO;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,18 +9,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
 
-@WebServlet(name = "DelBookedClassServlet", urlPatterns = "/DellBookedClassServlet")
-public class DelBookedClassServlet extends HttpServlet {
+@WebServlet(name = "DelFacultyServlet", urlPatterns = "/DelFacultyServlet")
+public class DelFacultyServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
-
         int formDelID = Integer.parseInt(request.getParameter("formDelId"));
-        String formHour = request.getParameter("formHour");
 
-        if(BookedDAO.updateBookedHour(formDelID, formHour)){
-            request.getRequestDispatcher("user.jsp").forward(request, response);
+        if(FacultiDAO.delFaculty(formDelID)){
+            request.getRequestDispatcher("main.jsp").forward(request, response);
         }else {
             request.getRequestDispatcher("sheethappens.jsp").forward(request, response);
         }
