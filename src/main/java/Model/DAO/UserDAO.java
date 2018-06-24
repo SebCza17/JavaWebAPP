@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class UserDAO {
@@ -100,6 +102,38 @@ public class UserDAO {
             System.out.println(e);
             return false;
         }
+    }
+
+    public static List<UserEntity> getAllUsers(int formOnwID){
+
+        List<UserEntity> userEntities = new ArrayList<>();
+
+        CoreDAO coreDAO = new CoreDAO();
+
+        try {
+            PreparedStatement preparedStatement = coreDAO.getStatement().getConnection().prepareStatement("SELECT * FROM users where id != ?" );
+
+            preparedStatement.setInt(1, formOnwID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+
+                UserEntity userEntity = new UserEntity();
+                userEntity.setId(resultSet.getInt("id"));
+                userEntity.setUsername(resultSet.getString("username"));
+
+                userEntities.add(userEntity);
+
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        coreDAO.close();
+
+        return userEntities;
     }
 
 

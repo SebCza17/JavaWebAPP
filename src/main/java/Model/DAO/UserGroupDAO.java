@@ -4,6 +4,7 @@ import Model.Entity.UserEntity;
 import Model.Entity.UserGroupEntity;
 
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserGroupDAO {
@@ -31,5 +32,28 @@ public class UserGroupDAO {
     public static String getPermision(int formUserID){
 
         return CoreDAO.getString("Select grouptext From users_group where idusers = '" + formUserID + "'");
+    }
+
+    public static Boolean editUserGroup(int formUserID, String formNewGroup){
+
+        try {
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("UPDATE users_group SET grouptext = ? WHERE idusers = ?");
+
+            preparedStatement.setString(1, formNewGroup);
+            preparedStatement.setInt(2, formUserID);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+
     }
 }

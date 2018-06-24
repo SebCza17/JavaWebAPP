@@ -51,7 +51,8 @@
     </nav>
     <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
 
-        <%if(request.getParameter("do") == null){ %> <%@include file="Resources/jspf/AdminFragment.jspf"%> <%}%>
+        <%if(request.getParameter("do") == null){ %> <%@include file="Resources/jspf/AdminFragment.jspf"%> <%}
+    else { %> <%@include file="Resources/jspf/EditAdminFragment.jspf"%>}%>
 
     </div>
 </header>
