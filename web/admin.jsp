@@ -1,4 +1,5 @@
 <%@ page import="Model.Entity.UserEntity" %>
+<%@ page import="Model.DAO.UserGroupDAO" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -9,11 +10,14 @@
 
 <%
 
-    UserEntity userEntity = null;
+    UserEntity userEntity = new UserEntity();
     if(session.getAttribute("user") == null) {
-        response.sendRedirect("");
-    }else
+        response.sendRedirect("index.jsp");
+    }else {
         userEntity = (UserEntity) session.getAttribute("user");
+        if(!UserGroupDAO.getPermision(userEntity.getId()).equals("admin"))
+            response.sendRedirect("main.jsp");
+    }
 
 
 
@@ -35,9 +39,11 @@
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li role="presentation"><a href="main.jsp">Main Menu</a></li>
-                    <li role="presentation"><a href="#">how to use</a></li>
-                    <li role="presentation"><a href="#">online streamers</a></li>
-                    <li role="presentation"><a href="">Admin Panel</a></li>
+                    <li role="presentation"><a href="main.jsp?faculty=-1">All Classes</a></li>
+                    <li role="presentation"><a href="user.jsp">User Panel</a></li>
+                    <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
+                    <li role="presentation"><a href="admin.jsp">Admin Panel</a></li>
+                    <%}%>
                     <li role="presentation"><a href="LogOutServlet">Sign Out</a></li>
                 </ul>
             </div>

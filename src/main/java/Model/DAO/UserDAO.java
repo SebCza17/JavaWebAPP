@@ -45,6 +45,12 @@ public class UserDAO {
 
     }
 
+    public static String getUserName(int formId) {
+
+        return CoreDAO.getString("select username where id = '" + formId + "'");
+
+    }
+
     public static String getLastId(){
         return CoreDAO.getString("select max(id) from users");
     }

@@ -34,8 +34,12 @@
             <%
                 for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty), orderType)) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
-                <td class="col-xs-1"><button value="<%=classesEntity.getId()%>" name="formDelId">Del</button></td>
-                <td class="col-xs-3 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getName()%></td>
+                <td class="col-xs-1">
+                    <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
+                        <button value="<%=classesEntity.getId()%>" name="formDelId">Del</button>
+                    <% i++;} else {%> <%=i++%> <%}%>
+                </td>
+                <td class="col-xs-3 rowClick" id="<%=classesEntity.getIdFaculty()%>"  value="<%=classesEntity.getId()%>"><%=classesEntity.getName()%></td>
                 <td class="col-xs-1 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getFloor()%></td>
                 <td class="col-xs-3 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getClassType()%></td>
                 <td class="col-xs-1 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getCapacity()%></td>
@@ -55,7 +59,7 @@
     $(".rowClick").on('click',function(e){
         e.preventDefault();
         var id = $(this).attr('value');
-        var faculty = getUrlVariable('faculty');
+        var faculty = $(this).attr('id');
         document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty=' + faculty +'&classes='+id;
 
 

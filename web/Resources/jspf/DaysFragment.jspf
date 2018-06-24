@@ -27,6 +27,7 @@
             </thead>
 
             <tbody class="points_table_scrollbar">
+            <form></form>
             <%
                 Date date = new Date();  SimpleDateFormat dayMask = new SimpleDateFormat ("dd"); int i = 1;
                 SimpleDateFormat monthMask = new SimpleDateFormat ("MM");

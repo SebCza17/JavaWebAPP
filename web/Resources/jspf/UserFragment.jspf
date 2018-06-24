@@ -27,7 +27,7 @@
                     <th class="col-xs-3">Day</th>
                     <th class="col-xs-2">Room</th>
                     <th class="col-xs-1">Faculty</th>
-                    <th class="col-xs-2">Cancel</th>
+                    <th class="col-xs-2"></th>
                 </tr>
                 </thead>
                 <tbody class="points_table_scrollbar">

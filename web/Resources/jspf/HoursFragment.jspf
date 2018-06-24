@@ -6,6 +6,7 @@
 <%@ page import="Model.DAO.BookedDAO" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.sql.Time" %>
+<%@ page import="Model.DAO.UserDAO" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -56,7 +57,7 @@
                 <td class="col-xs-1"><%=i++%></td>
                 <td class="col-xs-5"><%=x%></td>
                 <td class="col-xs-1"><%=dateMask.format(date)%></td>
-                <td class="col-xs-2"><%=classesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
+                <td class="col-xs-2"><%=ClassesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
                 <td class="col-xs-1"><%=facultiDAO.getName(Integer.parseInt(request.getParameter("faculty")))%></td>
                 <td class="col-xs-2"><%if(!bookedHours.contains(x)){ %><input type="checkbox" name="hour" value="<%=x%>"/> <%}%>  </td>
             </tr>

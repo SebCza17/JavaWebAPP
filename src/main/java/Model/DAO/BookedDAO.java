@@ -247,4 +247,5 @@ public class BookedDAO {
 
         return bookedEntities;
     }
+
 }

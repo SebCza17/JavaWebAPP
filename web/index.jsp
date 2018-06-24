@@ -26,16 +26,9 @@
   <header>
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container-fluid">
-        <div class="navbar-header"><a class="navbar-brand navbar-link" href="https://www.instagram.com/dize_designer/" target="blank"><i class="material-icons">cast</i></a>
-          <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-        </div>
         <div class="collapse navbar-collapse" id="navcol-1">
           <ul class="nav navbar-nav navbar-right">
-            <li role="presentation"><a href="#">start now</a></li>
-            <li role="presentation"><a href="#">how to use</a></li>
-            <li role="presentation"><a href="#">online streamers</a></li>
-            <li role="presentation"><a href="#">sign in</a></li>
-            <li role="presentation"><a href="">Sign In </a></li>
+            <li role="presentation"><a href="">Sign In</a></li>
           </ul>
         </div>
       </div>

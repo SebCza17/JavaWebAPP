@@ -6,7 +6,7 @@ import Model.Entity.UserGroupEntity;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 
-class UserGroupDAO {
+public class UserGroupDAO {
 
     static void addUserGroup(){
 
@@ -20,9 +20,16 @@ class UserGroupDAO {
 
             preparedStatement.executeUpdate();
 
+            coreDAO.close();
+
         }catch (Exception e){
             System.out.println(e);
         }
 
+    }
+
+    public static String getPermision(int formUserID){
+
+        return CoreDAO.getString("Select grouptext From users_group where idusers = '" + formUserID + "'");
     }
 }
