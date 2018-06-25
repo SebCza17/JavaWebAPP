@@ -30,6 +30,7 @@
             </thead>
 
             <tbody class="points_table_scrollbar">
+            <form action="${pageContext.request.contextPath}/admin.jsp" method="get">
             <form action="DelFacultyServlet" method="post" onsubmit="return confirm('Are you sure? (All linked classes will be deleted!!!)');">
             <%  ClassesDAO classesDAO = new ClassesDAO();
                 for (FacultyEntity faculty: FacultiDAO.getFaculties(orderType)) { %>
@@ -38,6 +39,7 @@
                     <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
                     <div>
                         <button value="<%=faculty.getId()%>" name="formDelId">Del</button>
+                        <button value="<%=faculty.getId()%>" name="formEditID">Edit</button>
                     </div>
                     <% i++;} else {%> <%=i++%> <%}%>
                 </td>
@@ -48,6 +50,7 @@
                 <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId(), -1).size()%></td>
             </tr>
                <% }%>
+            </form>
             </form>
 
             </tbody>

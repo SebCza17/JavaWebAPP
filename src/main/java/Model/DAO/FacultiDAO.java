@@ -110,5 +110,34 @@ public class FacultiDAO {
         }
     }
 
+    public FacultyEntity getFaculty(int formFacultyID){
+        FacultyEntity facultyEntity = new FacultyEntity();
+        try{
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("SELECT * FROM faculty WHERE id = ?");
+
+            preparedStatement.setInt(1, formFacultyID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                facultyEntity.setId(resultSet.getInt("id"));
+                facultyEntity.setName(resultSet.getString("name"));
+                facultyEntity.setShortname(resultSet.getString("shortname"));
+                facultyEntity.setWn(resultSet.getInt("wn"));
+                facultyEntity.setAddress(resultSet.getString("address"));
+            }
+
+            coreDAO.close();
+
+            return facultyEntity;
+
+        }catch(Exception e){
+            System.out.println(e);
+            return facultyEntity;
+        }
+    }
+
 }
 
