@@ -11,8 +11,9 @@
 <script src="Resources/JS/AdminJS.js"></script>
 <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 <%
-    FacultiDAO facultiDAO = new FacultiDAO();
     int facultyID = Integer.parseInt(request.getParameter("formEditID"));
+    FacultyEntity facultyEntity = FacultiDAO.getFaculty(facultyID);
+
 %>
 <div class="container" style="margin-top: 30vh">
     <div class="row">
@@ -35,24 +36,24 @@
 
                     <div id="collapse-1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading-1">
                         <div class="panel-body">
-                            <form action="AddFacultyServlet" method="post">
+                            <form action="EditFacultyServlet" method="post">
                                 <div class="form-row">
                                     <div class="form-group col-md-12">
-                                        <input name="formName" type="text" class="form-control" placeholder="Faculty Name" value="<%=facultiDAO.getFaculty(facultyID).getName()%>" required>
+                                        <input name="formName" type="text" class="form-control" placeholder="Faculty Name" value="<%=facultyEntity.getName()%>" required>
                                     </div>
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group col-md-3">
-                                        <input name="formShort" type="text" class="form-control" placeholder="Short Name" required>
+                                        <input name="formShortName" type="text" class="form-control" placeholder="Short Name" value="<%=facultyEntity.getShortname()%>" required>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <input name="formW" type="number" class="form-control" placeholder="W" required>
+                                        <input name="formWN" type="number" class="form-control" placeholder="W" value="<%=facultyEntity.getWn()%>" required>
                                     </div>
                                     <div class="form-group col-md-3">
-                                        <input name="formAddress" type="text" class="form-control" placeholder="Address" required>
+                                        <input name="formAddress" type="text" class="form-control" placeholder="Address" value="<%=facultyEntity.getAddress()%>" required>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary">Add</button>
+                                <button type="submit" class="btn btn-primary" value="<%=facultyEntity.getId()%>" name="formFacultyID">Add</button>
                             </form>
                         </div>
                     </div>

@@ -110,7 +110,7 @@ public class FacultiDAO {
         }
     }
 
-    public FacultyEntity getFaculty(int formFacultyID){
+    public static FacultyEntity getFaculty(int formFacultyID){
         FacultyEntity facultyEntity = new FacultyEntity();
         try{
             CoreDAO coreDAO = new CoreDAO();
@@ -136,6 +136,32 @@ public class FacultiDAO {
         }catch(Exception e){
             System.out.println(e);
             return facultyEntity;
+        }
+    }
+
+    public static Boolean editFaculty(int formID, String formName, String formShorName, int formWN, String formAddress){
+        try{
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("UPDATE faculty SET name = ?, shortname = ?, wn = ?, address = ? WHERE id =  ?");
+
+
+            preparedStatement.setString(1, formName);
+            preparedStatement.setString(2, formShorName);
+            preparedStatement.setInt(3, formWN);
+            preparedStatement.setString(4, formAddress);
+
+            preparedStatement.setInt(5, formID);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+            return true;
+
+        }catch(Exception e){
+            System.out.println(e);
+            return false;
         }
     }
 
