@@ -51,8 +51,9 @@
     </nav>
     <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
 
-        <%if(request.getParameter("formEditID") == null){ %> <%@include file="Resources/jspf/AdminFragment.jspf"%> <%}
-    else { %> <%@include file="Resources/jspf/EditAdminFragment.jspf"%> <%}%>
+        <%if(request.getParameter("formEditID") == null && request.getParameter("formClassID") == null){ %> <%@include file="Resources/jspf/AdminFragment.jspf"%> <%}
+    else if(request.getParameter("formClassID") == null) { %> <%@include file="Resources/jspf/EditAdminFragment.jspf"%> <%}
+    else { %> <%@include file="Resources/jspf/EditClassFragment.jspf"%> <%}%>
 
     </div>
 </header>

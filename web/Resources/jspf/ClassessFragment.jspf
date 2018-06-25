@@ -18,34 +18,37 @@
         <table class="points_table">
             <thead>
             <tr>
-                <th class="col-xs-1">#</th>
-                <th class="col-xs-3" <%if (orderType!=0){ %> value="0" <%} else{%>value="1" <%}%>">Name</th>
+                <th class="col-xs-3">#</th>
+                <th class="col-xs-2" <%if (orderType!=0){ %> value="0" <%} else{%>value="1" <%}%>">Name</th>
                 <th class="col-xs-1" <%if (orderType!=2){ %> value="2" <%} else{%>value="3" <%}%>>Floor</th>
                 <th class="col-xs-3" <%if (orderType!=4){ %> value="4" <%} else{%>value="5" <%}%>>Type</th>
                 <th class="col-xs-1" <%if (orderType!=6){ %> value="6" <%} else{%>value="7" <%}%>>Cap.</th>
-                <th class="col-xs-3" <%if (orderType!=8){ %> value="8" <%} else{%>value="9" <%}%>>Avail</th>
+                <th class="col-xs-2" <%if (orderType!=8){ %> value="8" <%} else{%>value="9" <%}%>>Avail</th>
             </tr>
             </thead>
 
             <tbody class="points_table_scrollbar">
-            <form action="DelClassServlet" method="post" onsubmit="return confirm('Are you sure?');">
+            <form action="${pageContext.request.contextPath}/admin.jsp" method="get" id="formEdit"></form>
+            <form action="DelClassServlet" method="post" id="formDel" onsubmit="return confirm('Are you sure?');"></form>
 
             <%ClassesDAO classesDAO = new ClassesDAO(); int i = 1; String getFaculty = request.getParameter("faculty");%>
             <%
                 for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty), orderType)) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
-                <td class="col-xs-1">
+                <td class="col-xs-3">
                     <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
-                        <button value="<%=classesEntity.getId()%>" name="formDelId">Del</button>
+                        <button value="<%=classesEntity.getId()%>" name="formDelId" form="formDel">Del</button>
+                        <button value="<%=classesEntity.getId()%>" name="formClassID" form="formEdit">Edit</button>
                     <% i++;} else {%> <%=i++%> <%}%>
                 </td>
-                <td class="col-xs-3 rowClick" id="<%=classesEntity.getIdFaculty()%>"  value="<%=classesEntity.getId()%>"><%=classesEntity.getName()%></td>
+                <td class="col-xs-2 rowClick" id="<%=classesEntity.getIdFaculty()%>"  value="<%=classesEntity.getId()%>"><%=classesEntity.getName()%></td>
                 <td class="col-xs-1 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getFloor()%></td>
                 <td class="col-xs-3 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getClassType()%></td>
                 <td class="col-xs-1 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getCapacity()%></td>
-                <td class="col-xs-3 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getAvailable()%></td>
+                <td class="col-xs-2 rowClick"  value="<%=classesEntity.getId()%>"><%=classesEntity.getAvailable()%></td>
             </tr>
             <% }%>
+
 
 
             </tbody>

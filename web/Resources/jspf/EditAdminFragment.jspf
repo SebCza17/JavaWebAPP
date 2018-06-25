@@ -53,7 +53,7 @@
                                         <input name="formAddress" type="text" class="form-control" placeholder="Address" value="<%=facultyEntity.getAddress()%>" required>
                                     </div>
                                 </div>
-                                <button type="submit" class="btn btn-primary" value="<%=facultyEntity.getId()%>" name="formFacultyID">Add</button>
+                                <button type="submit" class="btn btn-primary" value="<%=facultyEntity.getId()%>" name="formFacultyID">Edit</button>
                             </form>
                         </div>
                     </div>

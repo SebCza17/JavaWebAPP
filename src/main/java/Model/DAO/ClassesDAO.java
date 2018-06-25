@@ -3,6 +3,7 @@ package Model.DAO;
 import Model.Entity.ClassesEntity;
 import Model.Entity.FacultyEntity;
 import Model.Entity.UserEntity;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -144,5 +145,63 @@ public class ClassesDAO {
             return false;
         }
 
+    }
+
+    public static ClassesEntity getClasses(int formClassID){
+        ClassesEntity classesEntity = new ClassesEntity();
+
+        try{
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("SELECT * FROM classes WHERE id = ?");
+
+            preparedStatement.setInt(1, formClassID);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while(resultSet.next()){
+                classesEntity.setId(resultSet.getInt("id"));
+                classesEntity.setIdFaculty(resultSet.getInt("idfacult"));
+                classesEntity.setName(resultSet.getString("name"));
+                classesEntity.setFloor(resultSet.getInt("floor"));
+                classesEntity.setCapacity(resultSet.getInt("capacity"));
+                classesEntity.setAvailable(resultSet.getBoolean("isavailable"));
+                classesEntity.setClassType(resultSet.getString("classtype"));
+            }
+
+            coreDAO.close();
+
+            return classesEntity;
+        }catch(Exception e){
+            System.out.println(e);
+            return classesEntity;
+        }
+    }
+
+    public static Boolean editClassess(int formClassID, int formFacultyID, String formName, int formFloor, int formCapacity, Boolean formISAvailable, String formClassType){
+        try{
+            CoreDAO coreDAO = new CoreDAO();
+
+            PreparedStatement preparedStatement = coreDAO.getConnection()
+                    .prepareStatement("UPDATE classes SET idfacult = ?, name = ?, floor = ?, capacity = ?, isavailable = ?, classtype = ? WHERE id = ?");
+
+            preparedStatement.setInt(1, formFacultyID);
+            preparedStatement.setString(2, formName);
+            preparedStatement.setInt(3, formFloor);
+            preparedStatement.setInt(4, formCapacity);
+            preparedStatement.setBoolean(5, formISAvailable);
+            preparedStatement.setString(6, formClassType);
+
+            preparedStatement.setInt(7, formClassID);
+
+            preparedStatement.executeUpdate();
+
+            coreDAO.close();
+
+            return true;
+        }catch (Exception e){
+            System.out.println(e);
+            return false;
+        }
     }
 }
