@@ -1,0 +1,110 @@
+<%@ page import="Model.Entity.FacultyEntity" %>
+<%@ page import="java.util.List" %>
+<%@ page import="Model.DAO.FacultiDAO" %>
+<%@ page import="java.io.PrintWriter" %>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<link href="Resources/CSS/BodyStyle.css" rel="stylesheet" type="text/css"/>
+<div class="container">
+    <%
+        int i = 1;
+        int orderType = 0;
+        if(request.getParameter("orderby") != null) {
+            orderType = Integer.parseInt(request.getParameter("orderby"));
+        }
+    %>
+    <div style="margin-top: 30vh">
+        <table class="points_table">
+            <thead>
+            <tr>
+                <th class="col-xs-2">#</th>
+                <th class="col-xs-5" <%if (orderType!=0){ %> value="0" <%} else{%>value="1" <%}%>">Faculty</th>
+                <th class="col-xs-1" <%if (orderType!=2){ %> value="2" <%} else{%>value="3" <%}%>>Short</th>
+                <th class="col-xs-1" <%if (orderType!=4){ %> value="4" <%} else{%>value="5" <%}%>>W</th>
+                <th class="col-xs-2" <%if (orderType!=6){ %> value="6" <%} else{%>value="7" <%}%>>Address</th>
+                <th class="col-xs-1">n Classes</th>
+            </tr>
+            </thead>
+
+            <tbody class="points_table_scrollbar">
+            <form action="${pageContext.request.contextPath}/admin.jsp" method="get" id="formEdit"></form>
+            <form action="DelFacultyServlet" method="post" id="formDel" onsubmit="return confirm('Are you sure? (All linked classes will be deleted!!!)');"></form>
+            <%  ClassesDAO classesDAO = new ClassesDAO();
+                for (FacultyEntity faculty: FacultiDAO.findFaculties(request.getParameter("formToFind"))) { %>
+            <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
+                <td class="col-xs-2">
+                    <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
+                    <div>
+                        <button value="<%=faculty.getId()%>" name="formDelId" form="formDel">Del</button>
+                        <button value="<%=faculty.getId()%>" name="formEditID" form="formEdit">Edit</button>
+                    </div>
+                    <% i++;} else {%> <%=i++%> <%}%>
+                </td>
+                <td class="col-xs-5 rowClick" value="<%=faculty.getId()%>"><%=faculty.getName()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
+                <td class="col-xs-2 rowClick" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId(), -1).size()%></td>
+            </tr>
+            <% }%>
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<script>
+
+    $(".rowClick").on('click',function(e){
+        e.preventDefault();
+        var id = $(this).attr('value');
+        document.location.href = '${pageContext.request.contextPath}/main.jsp?faculty=' + id;
+
+
+    });
+
+    $(".points_table").on('click','th',function(e){
+        e.preventDefault();
+        var id = $(this).attr('value');
+        if(id != null)
+            document.location.href = '${pageContext.request.contextPath}/main.jsp?orderby=' + id;
+
+    });
+
+</script>
+
+<style>
+    button {
+        background-color: #ff3100;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #962800;
+        border: none;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+
+
+    th{
+        cursor: pointer;
+    }
+    th:hover{
+        color: #d5d626;
+    }
+</style>

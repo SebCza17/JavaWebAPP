@@ -165,5 +165,39 @@ public class FacultiDAO {
         }
     }
 
+    public static List<FacultyEntity> findFaculties(String formToFind){
+        List<FacultyEntity> facultyEntities = new ArrayList<>();
+
+        formToFind = formToFind.toUpperCase();
+
+        try{
+            CoreDAO coreDAO = new CoreDAO();
+
+            ResultSet resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty WHERE UPPER(name) LIKE '%" + formToFind + "%' OR UPPER(shortname) LIKE '%" + formToFind + "%'" +
+                    " OR UPPER(address) LIKE '%"+ formToFind + "%'");
+
+
+            while (resultSet.next()){
+                FacultyEntity facultyEntity = new FacultyEntity();
+
+                facultyEntity.setId(resultSet.getInt("id"));
+                facultyEntity.setName(resultSet.getString("name"));
+                facultyEntity.setShortname(resultSet.getString("shortname"));
+                facultyEntity.setWn(resultSet.getInt("wn"));
+                facultyEntity.setAddress(resultSet.getString("address"));
+
+                facultyEntities.add(facultyEntity);
+            }
+
+            return facultyEntities;
+        }catch (Exception e){
+            System.out.println(e);
+
+            return facultyEntities;
+        }
+
+
+    }
+
 }
 

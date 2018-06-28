@@ -31,9 +31,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.1.1/aos.css">
 </head>
 <body>
+<form action="main.jsp" method="get" id="formFind"></form>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
+                <ul class="nav navbar-nav navbar-left">
+                    <input type="text" name="formToFind" form="formFind" required>
+                    <button type="submit" form="formFind">Find</button>
+                </ul>
+
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li role="presentation"><a href="main.jsp">Main Menu</a></li>
@@ -49,7 +55,8 @@
     </nav>
             <div class="col-md-12" data-aos="fade-right" data-aos-duration="1800" data-aos-once="true">
 
-               <%if(request.getParameter("faculty") == null){ %>   <%@include file="Resources/jspf/BodyFragment.jspf"%> <%}
+               <%if(request.getParameter("faculty") == null && request.getParameter("formToFind") == null){ %>   <%@include file="Resources/jspf/BodyFragment.jspf"%> <%}
+               else if(request.getParameter("faculty") == null && request.getParameter("formToFind") != null) { %> <%@include file="Resources/jspf/FindFacultyFragment.jspf"%> <%}
                else if(request.getParameter("classes") == null){ %> <%@include file="Resources/jspf/ClassessFragment.jspf"%> <%}
                else if(request.getParameter("day") == null){ %> <%@include file="Resources/jspf/DaysFragment.jspf"%> <%}
                else if(request.getParameter("day") != null){ %> <%@include file="Resources/jspf/HoursFragment.jspf"%> <%}%>
