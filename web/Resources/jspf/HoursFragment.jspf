@@ -31,7 +31,14 @@
                 <th class="col-xs-1">Day</th>
                 <th class="col-xs-2">Room</th>
                 <th class="col-xs-1">Faculty</th>
-                <th class="col-xs-2"><button type="submit" value="Submit">Book</button> </th>
+                <th class="col-xs-2"><button type="submit" value="Submit">Book</button>
+                    <% if(!UserGroupDAO.getPermision(userEntity.getId()).equals("basic")) { %>
+                    <select  style="color: black"  name="formN">
+                        <option style="color: black" value="1" selected>1</option>
+                        <%for(int j = 2; j <= 15; j++){ %>
+                        <option value="<%=j%>"><%=j%></option>
+                        <%}}%>
+                    </select> </th>
             </tr>
             </thead>
             <tbody class="points_table_scrollbar">
@@ -59,7 +66,8 @@
                 <td class="col-xs-1"><%=dateMask.format(date)%></td>
                 <td class="col-xs-2"><%=ClassesDAO.getName(Integer.parseInt(request.getParameter("classes")))%></td>
                 <td class="col-xs-1"><%=facultiDAO.getName(Integer.parseInt(request.getParameter("faculty")))%></td>
-                <td class="col-xs-2"><%if(!bookedHours.contains(x)){ %><input type="checkbox" name="hour" value="<%=x%>"/> <%}%>  </td>
+                <td class="col-xs-2"><%if(!bookedHours.contains(x)){ %><input type="checkbox" name="hour" value="<%=x%>"/>
+                    <%}%>  </td>
             </tr>
             <% }%>
 

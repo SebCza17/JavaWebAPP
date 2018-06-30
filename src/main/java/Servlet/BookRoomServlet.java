@@ -28,6 +28,7 @@ public class BookRoomServlet extends HttpServlet {
         Calendar calendar = Calendar.getInstance(); calendar.setTime(date); calendar.add(Calendar.DATE, Integer.parseInt(request.getParameter("day"))); date = calendar.getTime();
 
         int classes = Integer.parseInt(request.getParameter("classes"));
+        int formN = Integer.parseInt(request.getParameter("formN"));
 
         String faculty = request.getParameter("faculty");
 
@@ -38,7 +39,7 @@ public class BookRoomServlet extends HttpServlet {
 
         int idUser = Integer.parseInt(request.getParameter("idUsers"));
 
-        bookedDAO.addBooked(classes, date, hoursString, idUser);
+        bookedDAO.addBooked(classes, date, hoursString, idUser, formN);
 
 
         request.getRequestDispatcher("main.jsp").forward(request, response);

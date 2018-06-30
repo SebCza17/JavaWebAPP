@@ -11,33 +11,41 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 public class BookedDAO {
 
-    public void addBooked(int formIdClasses, Date formDate, String formHours, int formIdUser) {
+    public void addBooked(int formIdClasses, Date formDate, String formHours, int formIdUser, int formN) {
         if (!isAlreadyIn(formIdClasses, formDate, formHours)) {
-            LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-            java.sql.Date sqlDate = java.sql.Date.valueOf(dateLocal);
-            try {
-                CoreDAO coreDAO = new CoreDAO();
+            Calendar calendar = Calendar.getInstance();
+            for(int i = 0; i < formN; i++) {
+                calendar.setTime(formDate);
+                calendar.add(Calendar.DATE, 7);
+                formDate = calendar.getTime();
+
+                LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+                java.sql.Date sqlDate = java.sql.Date.valueOf(dateLocal);
+                try {
+                    CoreDAO coreDAO = new CoreDAO();
 
 
-                PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO booked(idclass, days, hours, idusers) values (?, ?, ?, ?)");
+                    PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("INSERT INTO booked(idclass, days, hours, idusers) values (?, ?, ?, ?)");
 
 
-                preparedStatement.setInt(1, formIdClasses);
-                preparedStatement.setDate(2, sqlDate);
-                preparedStatement.setString(3, formHours);
-                preparedStatement.setInt(4, formIdUser);
+                    preparedStatement.setInt(1, formIdClasses);
+                    preparedStatement.setDate(2, sqlDate);
+                    preparedStatement.setString(3, formHours);
+                    preparedStatement.setInt(4, formIdUser);
 
-                preparedStatement.executeUpdate();
+                    preparedStatement.executeUpdate();
 
-                coreDAO.close();
+                    coreDAO.close();
 
-            } catch (SQLException e) {
-                e.printStackTrace();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
