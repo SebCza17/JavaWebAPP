@@ -15,6 +15,7 @@
         if(request.getParameter("orderby") != null) {
             orderType = Integer.parseInt(request.getParameter("orderby"));
         }
+        String formToFind = request.getParameter("formToFind");
     %>
     <div style="margin-top: 30vh">
         <table class="points_table">
@@ -33,7 +34,7 @@
             <form action="${pageContext.request.contextPath}/admin.jsp" method="get" id="formEdit"></form>
             <form action="DelFacultyServlet" method="post" id="formDel" onsubmit="return confirm('Are you sure? (All linked classes will be deleted!!!)');"></form>
             <%  ClassesDAO classesDAO = new ClassesDAO();
-                for (FacultyEntity faculty: FacultiDAO.findFaculties(request.getParameter("formToFind"))) { %>
+                for (FacultyEntity faculty: FacultiDAO.findFaculties(formToFind)) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
                 <td class="col-xs-2">
                     <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
@@ -47,7 +48,7 @@
                 <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getShortname()%></td>
                 <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=faculty.getWn()%></td>
                 <td class="col-xs-2 rowClick" value="<%=faculty.getId()%>"><%=faculty.getAddress()%></td>
-                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId(), -1).size()%></td>
+                <td class="col-xs-1 rowClick" value="<%=faculty.getId()%>"><%=classesDAO.getClassesList(faculty.getId(), -1, "").size()%></td>
             </tr>
             <% }%>
 
@@ -70,7 +71,7 @@
         e.preventDefault();
         var id = $(this).attr('value');
         if(id != null)
-            document.location.href = '${pageContext.request.contextPath}/main.jsp?orderby=' + id;
+            document.location.href = '${pageContext.request.contextPath}/main.jsp?orderby=' + id +'&formToFind=' + <%=formToFind%>;
 
     });
 

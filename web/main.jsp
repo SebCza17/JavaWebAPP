@@ -32,6 +32,8 @@
 </head>
 <body>
 <form action="main.jsp" method="get" id="formFind"></form>
+<%
+if(request.getParameter("faculty") != null) { %> <input type="hidden" value="<%=request.getParameter("faculty")%>" name="faculty" form="formFind"> <%}%>
 <header>
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -57,7 +59,8 @@
 
                <%if(request.getParameter("faculty") == null && request.getParameter("formToFind") == null){ %>   <%@include file="Resources/jspf/BodyFragment.jspf"%> <%}
                else if(request.getParameter("faculty") == null && request.getParameter("formToFind") != null) { %> <%@include file="Resources/jspf/FindFacultyFragment.jspf"%> <%}
-               else if(request.getParameter("classes") == null){ %> <%@include file="Resources/jspf/ClassessFragment.jspf"%> <%}
+               else if(request.getParameter("classes") == null && request.getParameter("formToFind") == null){ %> <%@include file="Resources/jspf/ClassessFragment.jspf"%> <%}
+               else if(request.getParameter("classes") == null && request.getParameter("formToFind") != null){ %> <%@include file="Resources/jspf/FindClassFragment.jspf"%> <%}
                else if(request.getParameter("day") == null){ %> <%@include file="Resources/jspf/DaysFragment.jspf"%> <%}
                else if(request.getParameter("day") != null){ %> <%@include file="Resources/jspf/HoursFragment.jspf"%> <%}%>
     </div>

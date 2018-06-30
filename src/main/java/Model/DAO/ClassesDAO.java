@@ -13,7 +13,7 @@ import java.util.List;
 
 public class ClassesDAO {
 
-    public List<ClassesEntity> getClassesList(int formIdFaculty, int formOrder) {
+    public List<ClassesEntity> getClassesList(int formIdFaculty, int formOrder, String formToFind) {
         List<ClassesEntity> classesEntities = new ArrayList<>();
         ClassesEntity classesEntity = null;
         ResultSet resultSet = null;
@@ -23,50 +23,50 @@ public class ClassesDAO {
         try {
             if(formIdFaculty != -1) {
                 if (formOrder == 0) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By name");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By name");
                 } else if (formOrder == 1) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By name DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By name DESC");
                 } else if (formOrder == 2) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By floor ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By floor ");
                 } else if (formOrder == 3) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By floor DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By floor DESC");
                 } else if (formOrder == 4) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By classtype ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%'  order By classtype ");
                 } else if (formOrder == 5) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By classtype DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By classtype DESC");
                 } else if (formOrder == 6) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By capacity ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By capacity ");
                 } else if (formOrder == 7) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By capacity DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By capacity DESC");
                 } else if (formOrder == 8) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By isavailable ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By isavailable ");
                 } else if (formOrder == 9) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' order By isavailable DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%' order By isavailable DESC");
                 } else
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "'");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where idFacult  = '" + formIdFaculty + "' AND UPPER(name) LIKE '%"+ formToFind +"%'");
             }else {
                 if (formOrder == 0) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By name");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By name");
                 } else if (formOrder == 1) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By name DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By name DESC");
                 } else if (formOrder == 2) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By floor ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By floor ");
                 } else if (formOrder == 3) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By floor DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By floor DESC");
                 } else if (formOrder == 4) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By classtype ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By classtype ");
                 } else if (formOrder == 5) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By classtype DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By classtype DESC");
                 } else if (formOrder == 6) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By capacity ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By capacity ");
                 } else if (formOrder == 7) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By capacity DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By capacity DESC");
                 } else if (formOrder == 8) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By isavailable ");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By isavailable ");
                 } else if (formOrder == 9) {
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes order By isavailable DESC");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%' order By isavailable DESC");
                 } else
-                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes");
+                    resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM classes where UPPER(name) LIKE '%"+ formToFind +"%'");
             }
             while (resultSet.next()) {
                 classesEntity = new ClassesEntity();
@@ -204,4 +204,5 @@ public class ClassesDAO {
             return false;
         }
     }
+
 }

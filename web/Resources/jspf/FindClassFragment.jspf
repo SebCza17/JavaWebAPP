@@ -1,5 +1,6 @@
 <%@ page import="Model.DAO.ClassesDAO" %>
 <%@ page import="Model.Entity.ClassesEntity" %>
+<%@ page import="Model.DAO.UserGroupDAO" %>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
@@ -33,12 +34,12 @@
 
             <%ClassesDAO classesDAO = new ClassesDAO(); int i = 1; String getFaculty = request.getParameter("faculty");%>
             <%
-                for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty), orderType, "")) { %>
+                for (ClassesEntity classesEntity: classesDAO.getClassesList(Integer.parseInt(getFaculty), orderType, request.getParameter("formToFind"))) { %>
             <tr <%if (i%2==0){ %> class="odd" <%} else{%>class="even" <%}%>>
                 <td class="col-xs-3">
                     <% if(UserGroupDAO.getPermision(userEntity.getId()).equals("admin")){ %>
-                        <button value="<%=classesEntity.getId()%>" name="formDelId" form="formDel">Del</button>
-                        <button value="<%=classesEntity.getId()%>" name="formClassID" form="formEdit">Edit</button>
+                    <button value="<%=classesEntity.getId()%>" name="formDelId" form="formDel">Del</button>
+                    <button value="<%=classesEntity.getId()%>" name="formClassID" form="formEdit">Edit</button>
                     <% i++;} else {%> <%=i++%> <%}%>
                 </td>
                 <td class="col-xs-2 rowClick" id="<%=classesEntity.getIdFaculty()%>"  value="<%=classesEntity.getId()%>"><%=classesEntity.getName()%></td>

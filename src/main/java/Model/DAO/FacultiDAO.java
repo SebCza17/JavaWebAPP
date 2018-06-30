@@ -173,9 +173,13 @@ public class FacultiDAO {
         try{
             CoreDAO coreDAO = new CoreDAO();
 
-            ResultSet resultSet = coreDAO.getStatement().executeQuery("SELECT * FROM faculty WHERE UPPER(name) LIKE '%" + formToFind + "%' OR UPPER(shortname) LIKE '%" + formToFind + "%'" +
-                    " OR UPPER(address) LIKE '%"+ formToFind + "%'");
+            PreparedStatement preparedStatement = coreDAO.getConnection().prepareStatement("SELECT * FROM faculty WHERE UPPER(name) LIKE ? OR UPPER(shortname) LIKE ? OR UPPER(address) LIKE ?");
 
+            preparedStatement.setString(1,"%" + formToFind + "%");
+            preparedStatement.setString(2, "%" + formToFind + "%");
+            preparedStatement.setString(3,"%" + formToFind + "%");
+
+            ResultSet resultSet = preparedStatement.executeQuery();
 
             while (resultSet.next()){
                 FacultyEntity facultyEntity = new FacultyEntity();
