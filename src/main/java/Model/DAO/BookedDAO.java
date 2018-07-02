@@ -20,9 +20,11 @@ public class BookedDAO {
     public void addBooked(int formIdClasses, Date formDate, String formHours, int formIdUser, int formN) {
         if (!isAlreadyIn(formIdClasses, formDate, formHours)) {
             Calendar calendar = Calendar.getInstance();
+            calendar.setTime(formDate);
+            int z = 0;
             for(int i = 0; i < formN; i++) {
-                calendar.setTime(formDate);
-                calendar.add(Calendar.DATE, 7);
+                if(i != 0) z = 7;
+                calendar.add(Calendar.DATE, z);
                 formDate = calendar.getTime();
 
                 LocalDate dateLocal = formDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
